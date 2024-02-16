@@ -1,0 +1,231 @@
+{
+  "name": "delete",
+  "version": 32,
+  "source-key": {
+    "type": "figma",
+    "file": "leRCCribikakEt5IrPcnx8",
+    "node": "6:98",
+    "version": "5154032174",
+    "component-id": "4ec06b5638665ee16761e4c1f8a15ba927006bd5"
+  },
+  "default": "delete",
+  "design": {
+    "atoms": [
+      {
+        "type": "group",
+        "id": "top_level",
+        "root": "true"
+      },
+      {
+        "type": "group",
+        "id": "top_level_synth"
+      },
+      {
+        "type": "group",
+        "id": "ic:outline-delete"
+      },
+      {
+        "type": "text",
+        "id": "Actualizar"
+      },
+      {
+        "type": "vector",
+        "id": "btnActualizar"
+      },
+      {
+        "type": "vector",
+        "id": "btnDelete"
+      },
+      {
+        "type": "vector",
+        "id": "Vector"
+      }
+    ],
+    "modes": {
+      "delete": {
+        "rules": [
+          {
+            "id": "top_level",
+            "tap-handler": "$onDltBtn",
+            "is-structured": "false",
+            "children": [
+              "top_level_synth",
+              "ic:outline-delete",
+              "Actualizar"
+            ],
+            "clip-content": "false"
+          },
+          {
+            "id": "top_level_synth",
+            "opacity": "100.0",
+            "size-constraints": {
+              "width-constraints": {
+                "sizing-mode": "proportional",
+                "value": "1.0"
+              },
+              "height-constraints": {
+                "sizing-mode": "shrink"
+              }
+            },
+            "arrangement": "row",
+            "main-axis-align": "start",
+            "cross-axis-align": "start",
+            "children": [
+              "btnActualizar",
+              "btnDelete"
+            ],
+            "item-spacing": "230.0",
+            "clip-content": "false"
+          },
+          {
+            "id": "ic:outline-delete",
+            "alignment": {
+              "horizontal": {
+                "attachment": "center",
+                "offset": "161.5"
+              },
+              "vertical": {
+                "attachment": "center",
+                "offset": "0.0"
+              }
+            },
+            "size-constraints": {
+              "width-constraints": {
+                "sizing-mode": "fixed",
+                "value": "39.0"
+              },
+              "height-constraints": {
+                "sizing-mode": "fixed",
+                "value": "28.0"
+              }
+            },
+            "is-structured": "false",
+            "children": [
+              "Vector"
+            ]
+          },
+          {
+            "id": "Actualizar",
+            "alignment": {
+              "horizontal": {
+                "attachment": "center",
+                "offset": "-131.5"
+              },
+              "vertical": {
+                "attachment": "center",
+                "offset": "-0.5"
+              }
+            },
+            "tap-handler": "$onBtnActualizar",
+            "size-constraints": {
+              "width-constraints": {
+                "sizing-mode": "fixed",
+                "value": "75.0"
+              },
+              "height-constraints": {
+                "sizing-mode": "fixed",
+                "value": "35.0"
+              }
+            },
+            "color": {
+              "alpha": "1.0",
+              "hue": "0.0",
+              "saturation": "0.0",
+              "value": "1.0"
+            },
+            "text-content": "Actualizar",
+            "overflow": "visible",
+            "max-lines": "-1",
+            "text-align": "left",
+            "text-align-vertical": "center",
+            "line-height": "1.2102272851126534",
+            "typeface": "Inter"
+          },
+          {
+            "id": "btnActualizar",
+            "border-radius": "42.0",
+            "tap-handler": "$onBtnCmbiocolor",
+            "size-constraints": {
+              "width-constraints": {
+                "sizing-mode": "fixed",
+                "value": "94.0"
+              },
+              "height-constraints": {
+                "sizing-mode": "fixed",
+                "value": "35.0"
+              }
+            },
+            "vector-content": "btn_actualizar.svg"
+          },
+          {
+            "id": "btnDelete",
+            "size-constraints": {
+              "width-constraints": {
+                "sizing-mode": "fixed",
+                "value": "40.0"
+              },
+              "height-constraints": {
+                "sizing-mode": "fixed",
+                "value": "36.0"
+              }
+            },
+            "vector-content": "btn_delete.svg"
+          },
+          {
+            "id": "Vector",
+            "alignment": {
+              "horizontal": {
+                "attachment": "center",
+                "offset": "9.5367431640625e-7"
+              },
+              "vertical": {
+                "attachment": "center",
+                "offset": "0.0"
+              }
+            },
+            "size-constraints": {
+              "width-constraints": {
+                "sizing-mode": "fixed",
+                "value": "22.750001907348633"
+              },
+              "height-constraints": {
+                "sizing-mode": "fixed",
+                "value": "21.0"
+              }
+            },
+            "vector-content": "vector.svg"
+          }
+        ]
+      }
+    }
+  },
+  "parameters": {
+    "onDltBtn": {
+      "data-type": "void-callback",
+      "required": false,
+      "description": ""
+    },
+    "onBtnActualizar": {
+      "data-type": "void-callback",
+      "required": false,
+      "description": ""
+    },
+    "onBtnCmbiocolor": {
+      "data-type": "void-callback",
+      "required": false,
+      "description": ""
+    }
+  },
+  "previews": [
+    {
+      "design": "delete",
+      "size": {
+        "width": 364.0,
+        "height": 36.0
+      }
+    }
+  ],
+  "adin-component-search-paths": [],
+  "image-search-paths": [],
+  "vector-search-paths": []
+}

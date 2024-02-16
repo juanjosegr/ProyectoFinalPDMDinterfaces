@@ -1,0 +1,332 @@
+{
+  "name": "grupo_login",
+  "version": 32,
+  "source-key": {
+    "type": "figma",
+    "file": "leRCCribikakEt5IrPcnx8",
+    "node": "5:47",
+    "version": "5162007227",
+    "component-id": "7874808b6692eb2f24151115e46b196ea0babd3c"
+  },
+  "default": "grupoLogin",
+  "design": {
+    "atoms": [
+      {
+        "type": "group",
+        "id": "top_level",
+        "root": "true"
+      },
+      {
+        "type": "text",
+        "id": "Conectar"
+      },
+      {
+        "type": "group",
+        "id": "Frame 2"
+      },
+      {
+        "type": "group",
+        "id": "Frame 3"
+      },
+      {
+        "type": "group",
+        "id": "BtnLogin"
+      },
+      {
+        "type": "group",
+        "id": "BtnRegistrer"
+      },
+      {
+        "type": "vector",
+        "id": "Rectangle6"
+      },
+      {
+        "type": "text",
+        "id": "Conectar1"
+      },
+      {
+        "type": "vector",
+        "id": "Rectangle7"
+      },
+      {
+        "type": "text",
+        "id": "Register"
+      }
+    ],
+    "modes": {
+      "grupoLogin": {
+        "rules": [
+          {
+            "id": "top_level",
+            "children": [
+              "Conectar",
+              "Frame 2",
+              "Frame 3",
+              "BtnLogin",
+              "BtnRegistrer"
+            ],
+            "item-spacing": "24.0",
+            "clip-content": "false"
+          },
+          {
+            "id": "Conectar",
+            "size-constraints": {
+              "width-constraints": {
+                "sizing-mode": "fixed",
+                "value": "178.0"
+              },
+              "height-constraints": {
+                "sizing-mode": "fixed",
+                "value": "64.0"
+              }
+            },
+            "font-weight": "800.0",
+            "color": {
+              "alpha": "1.0",
+              "hue": "0.0",
+              "saturation": "0.0",
+              "value": "0.0"
+            },
+            "text-content": "Conectar",
+            "overflow": "visible",
+            "max-lines": "-1",
+            "text-align-vertical": "center",
+            "text-size": "32.0",
+            "line-height": "1.2102272510528564",
+            "typeface": "Inter"
+          },
+          {
+            "id": "Frame 2",
+            "size-constraints": {
+              "width-constraints": {
+                "sizing-mode": "fixed",
+                "value": "245.0"
+              },
+              "height-constraints": {
+                "sizing-mode": "fixed",
+                "value": "56.0"
+              }
+            },
+            "is-structured": "false",
+            "background-color": {
+              "alpha": "1.0",
+              "hue": "0.0",
+              "saturation": "0.0",
+              "value": "1.0"
+            },
+            "clip-content": "false"
+          },
+          {
+            "id": "Frame 3",
+            "size-constraints": {
+              "width-constraints": {
+                "sizing-mode": "fixed",
+                "value": "245.0"
+              },
+              "height-constraints": {
+                "sizing-mode": "fixed",
+                "value": "56.0"
+              }
+            },
+            "is-structured": "false",
+            "background-color": {
+              "alpha": "1.0",
+              "hue": "0.0",
+              "saturation": "0.0",
+              "value": "1.0"
+            },
+            "clip-content": "false"
+          },
+          {
+            "id": "BtnLogin",
+            "border-radius": "72.0",
+            "tap-handler": "$onBtnLogin",
+            "size-constraints": {
+              "width-constraints": {
+                "sizing-mode": "fixed",
+                "value": "245.0"
+              },
+              "height-constraints": {
+                "sizing-mode": "fixed",
+                "value": "36.0"
+              }
+            },
+            "is-structured": "false",
+            "children": [
+              "Rectangle6",
+              "Conectar1"
+            ],
+            "clip-content": "false"
+          },
+          {
+            "id": "BtnRegistrer",
+            "border-radius": "72.0",
+            "tap-handler": "$onBtnRegister",
+            "size-constraints": {
+              "width-constraints": {
+                "sizing-mode": "fixed",
+                "value": "245.0"
+              },
+              "height-constraints": {
+                "sizing-mode": "fixed",
+                "value": "36.0"
+              }
+            },
+            "is-structured": "false",
+            "children": [
+              "Rectangle7",
+              "Register"
+            ],
+            "clip-content": "false"
+          },
+          {
+            "id": "Rectangle6",
+            "border-radius": "72.0",
+            "alignment": {
+              "horizontal": {
+                "attachment": "center",
+                "offset": "0.0"
+              },
+              "vertical": {
+                "attachment": "center",
+                "offset": "0.0"
+              }
+            },
+            "size-constraints": {
+              "width-constraints": {
+                "sizing-mode": "fixed",
+                "value": "245.0"
+              },
+              "height-constraints": {
+                "sizing-mode": "fixed",
+                "value": "36.0"
+              }
+            },
+            "vector-content": "rectangle6.svg"
+          },
+          {
+            "id": "Conectar1",
+            "alignment": {
+              "horizontal": {
+                "attachment": "center",
+                "offset": "-3.0246429443359375"
+              },
+              "vertical": {
+                "attachment": "center",
+                "offset": "-0.0000152587890625"
+              }
+            },
+            "size-constraints": {
+              "width-constraints": {
+                "sizing-mode": "fixed",
+                "value": "202.65432739257812"
+              },
+              "height-constraints": {
+                "sizing-mode": "fixed",
+                "value": "28.421051025390625"
+              }
+            },
+            "color": {
+              "alpha": "1.0",
+              "hue": "0.0",
+              "saturation": "0.0",
+              "value": "1.0"
+            },
+            "text-content": "Conectar",
+            "overflow": "visible",
+            "max-lines": "-1",
+            "text-align-vertical": "center",
+            "text-size": "12.0",
+            "line-height": "1.2102272510528564",
+            "typeface": "Inter"
+          },
+          {
+            "id": "Rectangle7",
+            "border-radius": "72.0",
+            "alignment": {
+              "horizontal": {
+                "attachment": "center",
+                "offset": "0.0"
+              },
+              "vertical": {
+                "attachment": "center",
+                "offset": "0.0"
+              }
+            },
+            "size-constraints": {
+              "width-constraints": {
+                "sizing-mode": "fixed",
+                "value": "245.0"
+              },
+              "height-constraints": {
+                "sizing-mode": "fixed",
+                "value": "36.0"
+              }
+            },
+            "vector-content": "rectangle7.svg"
+          },
+          {
+            "id": "Register",
+            "alignment": {
+              "horizontal": {
+                "attachment": "center",
+                "offset": "-3.0245819091796875"
+              },
+              "vertical": {
+                "attachment": "center",
+                "offset": "0.0000457763671875"
+              }
+            },
+            "size-constraints": {
+              "width-constraints": {
+                "sizing-mode": "fixed",
+                "value": "202.65432739257812"
+              },
+              "height-constraints": {
+                "sizing-mode": "fixed",
+                "value": "28.421051025390625"
+              }
+            },
+            "color": {
+              "alpha": "1.0",
+              "hue": "0.0",
+              "saturation": "0.0",
+              "value": "1.0"
+            },
+            "text-content": "Resgritarse",
+            "overflow": "visible",
+            "max-lines": "-1",
+            "text-align-vertical": "center",
+            "text-size": "12.0",
+            "line-height": "1.2102272510528564",
+            "typeface": "Inter"
+          }
+        ]
+      }
+    }
+  },
+  "parameters": {
+    "onBtnLogin": {
+      "data-type": "void-callback",
+      "required": false,
+      "description": ""
+    },
+    "onBtnRegister": {
+      "data-type": "void-callback",
+      "required": false,
+      "description": ""
+    }
+  },
+  "previews": [
+    {
+      "design": "grupoLogin",
+      "size": {
+        "width": 384.0,
+        "height": 347.0
+      }
+    }
+  ],
+  "adin-component-search-paths": [],
+  "image-search-paths": [],
+  "vector-search-paths": []
+}
