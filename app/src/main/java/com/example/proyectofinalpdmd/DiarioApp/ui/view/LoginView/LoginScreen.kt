@@ -16,10 +16,7 @@ import com.example.proyectofinalpdmd.navigation.Routes.Routes
 
 @Composable
 fun LoginScreen(navController: NavController, loginScreenVM: LoginScreenVM) {
-
-
     Box(modifier = Modifier.fillMaxSize()) {
-
         Column(
             modifier = Modifier
                 .background(Color.White)

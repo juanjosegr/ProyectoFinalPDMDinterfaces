@@ -15,10 +15,11 @@ import kotlinx.coroutines.launch
 class LoginScreenVM: ViewModel() {
 
     var email by mutableStateOf("")
+        private set
     var pasww by mutableStateOf("")
+        private set
 
     private val auth: FirebaseAuth = Firebase.auth
-    private val firestore = Firebase.firestore
     var showAlert by mutableStateOf(false)
         private set
 

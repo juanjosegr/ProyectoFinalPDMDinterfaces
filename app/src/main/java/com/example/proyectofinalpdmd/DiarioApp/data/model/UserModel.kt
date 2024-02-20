@@ -7,5 +7,5 @@ package com.example.proyectofinalpdmd.DiarioApp.data.model
 data class UserModel(
     val userId: String,
     val email: String,
-    val username: String,
+    val pasww: String,
 )

@@ -43,6 +43,8 @@ class MainActivity : ComponentActivity() {
                         composable(Routes.registerScreen.routes){ RegisterScreen(navController, registerScreenVM) }
                         composable(Routes.diarioScreen.routes){ DiarioPrincipalScreen(navController, diarioPrincipalScreenVM) }
                     }
+
+                    //NavManager(loginScreenVM,registerScreenVM,diarioPrincipalScreenVM)
                 }
             }
         }
