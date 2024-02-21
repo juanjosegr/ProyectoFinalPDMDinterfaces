@@ -37,6 +37,17 @@ class RegisterScreenVM: ViewModel() {
     fun createUser(onSuccess:() -> Unit){
         viewModelScope.launch {
             try {
+                if (email.isBlank() || pasww.isBlank()) {
+                    // Campos en blanco, mostrar error
+                    Log.d("Error en firabase","Error con campos en blanco.")
+                    showAlert = true
+                }
+
+                if (!isValidEmail(email)) {
+                    // Email no válido, mostrar error
+                    Log.d("Error en firabase","Error con email no valido.")
+                    showAlert = true
+                }
                 auth.createUserWithEmailAndPassword(email,pasww)
                     .addOnCompleteListener { task ->
                         if (task.isSuccessful){
@@ -72,5 +83,10 @@ class RegisterScreenVM: ViewModel() {
     }
     fun closedShowAlert(){
         showAlert = false
+    }
+
+    private fun isValidEmail(email: String): Boolean {
+        val emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+"
+        return email.matches(emailPattern.toRegex())
     }
 }

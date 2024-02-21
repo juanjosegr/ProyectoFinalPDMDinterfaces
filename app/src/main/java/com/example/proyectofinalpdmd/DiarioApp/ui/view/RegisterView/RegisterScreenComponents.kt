@@ -21,7 +21,6 @@ import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.DpOffset
 import androidx.compose.ui.unit.dp
-import com.example.proyectofinalpdmd.DiarioApp.ui.viewModel.LoginVm.LoginScreenVM
 import com.example.proyectofinalpdmd.DiarioApp.ui.viewModel.RegisterVm.RegisterScreenVM
 import com.example.proyectofinalpdmd.gruporegistro.BtnRgt
 import com.example.proyectofinalpdmd.gruporegistro.Frame2
@@ -30,7 +29,6 @@ import com.example.proyectofinalpdmd.gruporegistro.Rectangle6
 import com.example.proyectofinalpdmd.gruporegistro.Regristro
 import com.example.proyectofinalpdmd.gruporegistro.Rgt
 import com.example.proyectofinalpdmd.gruporegistro.TopLevel
-import com.example.proyectofinalpdmd.navigation.Routes.Routes
 
 
 @Composable

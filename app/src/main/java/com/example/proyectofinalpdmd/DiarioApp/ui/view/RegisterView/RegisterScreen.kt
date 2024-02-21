@@ -27,7 +27,7 @@ fun RegisterScreen(navController: NavController, registerScreemVm: RegisterScree
                     .align(Alignment.CenterHorizontally)
                     .weight(0.5f),
                 registerScreenVM = registerScreemVm,
-                onBtnRegister = {registerScreemVm.createUser { navController.navigate(Routes.loginScreen.routes) }}
+                onBtnRegister = { registerScreemVm.createUser{ navController.navigate(Routes.loginScreen.routes) }}
             )
             LlamadaShowAlert(registerScreemVm)
         }

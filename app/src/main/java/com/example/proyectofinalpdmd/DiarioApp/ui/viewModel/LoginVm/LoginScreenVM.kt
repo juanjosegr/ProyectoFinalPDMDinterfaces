@@ -9,7 +9,6 @@ import androidx.lifecycle.viewModelScope
 import com.google.firebase.Firebase
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.auth
-import com.google.firebase.firestore.firestore
 import kotlinx.coroutines.launch
 
 class LoginScreenVM: ViewModel() {
@@ -34,6 +33,17 @@ class LoginScreenVM: ViewModel() {
 
     fun login(onSuccess: () -> Unit){
         viewModelScope.launch {
+            if (email.isBlank() || pasww.isBlank()) {
+                // Campos en blanco, mostrar error
+                Log.d("Error en firabase","Error con campos en blanco.")
+                showAlert = true
+            }
+
+            if (!isValidEmail(email)) {
+                // Email no válido, mostrar error
+                Log.d("Error en firabase","Error con email no valido.")
+                showAlert = true
+            }
             try {
                 auth.signInWithEmailAndPassword(email,pasww)
                     .addOnCompleteListener { task ->
@@ -54,5 +64,8 @@ class LoginScreenVM: ViewModel() {
     fun closedShowAlert(){
         showAlert = false
     }
-
+    private fun isValidEmail(email: String): Boolean {
+        val emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+"
+        return email.matches(emailPattern.toRegex())
+    }
 }

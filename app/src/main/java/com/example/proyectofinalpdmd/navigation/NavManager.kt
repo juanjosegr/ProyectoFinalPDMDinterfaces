@@ -1,20 +1,21 @@
 package com.example.proyectofinalpdmd.navigation
 
-import androidx.activity.viewModels
 import androidx.compose.runtime.Composable
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import com.example.proyectofinalpdmd.DiarioApp.ui.view.AnadirNotaView.AnadirNotaScreen
 import com.example.proyectofinalpdmd.DiarioApp.ui.view.DiarioView.DiarioPrincipalScreen
 import com.example.proyectofinalpdmd.DiarioApp.ui.view.LoginView.LoginScreen
 import com.example.proyectofinalpdmd.DiarioApp.ui.view.RegisterView.RegisterScreen
+import com.example.proyectofinalpdmd.DiarioApp.ui.viewModel.AnadirNotaVM.AnadirNotaVM
 import com.example.proyectofinalpdmd.DiarioApp.ui.viewModel.DiarioVM.DiarioPrincipalScreenVM
 import com.example.proyectofinalpdmd.DiarioApp.ui.viewModel.LoginVm.LoginScreenVM
 import com.example.proyectofinalpdmd.DiarioApp.ui.viewModel.RegisterVm.RegisterScreenVM
 import com.example.proyectofinalpdmd.navigation.Routes.Routes
 
 @Composable
-fun NavManager(loginScreenVM: LoginScreenVM ,registerScreenVM: RegisterScreenVM,diarioPrincipalScreenVM: DiarioPrincipalScreenVM) {
+fun NavManager(loginScreenVM: LoginScreenVM ,registerScreenVM: RegisterScreenVM,diarioPrincipalScreenVM: DiarioPrincipalScreenVM, anadirNotaVM: AnadirNotaVM) {
     val navController = rememberNavController()
 
     NavHost(
@@ -28,6 +29,9 @@ fun NavManager(loginScreenVM: LoginScreenVM ,registerScreenVM: RegisterScreenVM,
         }
         composable(Routes.diarioScreen.routes){
             DiarioPrincipalScreen(navController, diarioPrincipalScreenVM)
+        }
+        composable(Routes.anadirScreen.routes){
+            AnadirNotaScreen(navController,anadirNotaVM)
         }
     }
 }
