@@ -9,22 +9,22 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.verticalScroll
+import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
-import com.example.proyectofinalpdmd.DiarioApp.ui.viewModel.DiarioVM.DiarioPrincipalScreenVM
+import com.example.proyectofinalpdmd.DiarioApp.ui.viewModel.DiarioVM.DiaryScreenMain
 import com.example.proyectofinalpdmd.abajo.Abajo
 import com.example.proyectofinalpdmd.navigation.Routes.Routes
 
 @Composable
 fun DiarioPrincipalScreen(
     navController: NavController,
-    diarioPrincipalScreenVM: DiarioPrincipalScreenVM,
+    diaryScreenMain: DiaryScreenMain,
 ) {
-
     Box(modifier = Modifier.fillMaxSize()) {
 
         Column(
@@ -43,14 +43,11 @@ fun DiarioPrincipalScreen(
                         .fillMaxWidth()
                         .height(70.dp)
                         .align(Alignment.TopStart),
-                    diarioPrincipalScreenVM
+                    diaryScreenMain
                 )
             }
             ColumnasSeparadas()
         }
-
-
-
         Box(
             modifier = Modifier
                 .size(40.dp, 36.dp)

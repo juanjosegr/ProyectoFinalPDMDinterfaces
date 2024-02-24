@@ -29,7 +29,7 @@ fun RegisterScreen(navController: NavController, registerScreemVm: RegisterScree
                 registerScreenVM = registerScreemVm,
                 onBtnRegister = { registerScreemVm.createUser{ navController.navigate(Routes.loginScreen.routes) }}
             )
-            LlamadaShowAlert(registerScreemVm)
+            LlamadaShowAlert(registerScreemVm, registerScreemVm.textError, registerScreemVm.casoErrorAcierto)
         }
     }
 }

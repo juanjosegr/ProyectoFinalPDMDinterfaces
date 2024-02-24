@@ -8,7 +8,10 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.verticalScroll
+import androidx.compose.material.AlertDialog
 import androidx.compose.material.Button
 import androidx.compose.material.DropdownMenu
 import androidx.compose.material.DropdownMenuItem
@@ -23,22 +26,19 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.text.input.TextFieldValue
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.proyectofinalpdmd.DiarioApp.data.model.NotaModel
-import com.example.proyectofinalpdmd.DiarioApp.ui.viewModel.AnadirNotaVM.AnadirNotaVM
+import com.example.proyectofinalpdmd.DiarioApp.ui.viewModel.AnadirNotaVM.AddNoteVM
+import com.example.proyectofinalpdmd.DiarioApp.ui.viewModel.LoginVm.LoginScreenVM
 
 @Composable
-fun AnadirNotasComponent(
-    anadirNotaVM: AnadirNotaVM
+fun AddNoteComponents(
+    addNoteVM: AddNoteVM
 ) {
-    var title by remember { mutableStateOf(TextFieldValue()) }
-    var note by remember { mutableStateOf(TextFieldValue()) }
-    var noteColor by remember { mutableStateOf(NotaModel.noteColors[0]) }
     var expanded by remember { mutableStateOf(false) }
     var selectedColorName by remember { mutableStateOf("Elegir color") }
-    val colorNames = listOf("RedOrange", "LightGreen", "Violet", "Blue", "RedPink")
 
     Column(modifier = Modifier.padding(16.dp)) {
         Text("Nueva nota", style = MaterialTheme.typography.h5)
@@ -46,23 +46,23 @@ fun AnadirNotasComponent(
         Spacer(modifier = Modifier.height(16.dp))
 
         OutlinedTextField(
-            value = title,
-            onValueChange = { title = it },
+            value = addNoteVM.titleNote,
+            onValueChange = { addNoteVM.changeTitleNote(it) },
             label = { Text("Título") }
         )
 
         Spacer(modifier = Modifier.height(16.dp))
 
         OutlinedTextField(
-            value = note,
-            onValueChange = { note = it },
+            value = addNoteVM.textNote,
+            onValueChange = { addNoteVM.changeTextNote(it) },
             label = { Text("Nota") },
             modifier = Modifier.height(200.dp)
         )
 
         Spacer(modifier = Modifier.height(16.dp))
         Row {
-            Button(onClick = { /* Acción para guardar la nota */ }) {
+            Button(onClick = { addNoteVM.saveNewNote() }) {
                 Text("Aceptar")
             }
 
@@ -90,9 +90,9 @@ fun AnadirNotasComponent(
                 expanded = expanded,
                 onDismissRequest = { expanded = false }
             ) {
-                NotaModel.noteColors.zip(colorNames).forEach { (color, name) ->
+                NotaModel.noteColors.zip(addNoteVM.colorNames).forEach { (color, name) ->
                     DropdownMenuItem(onClick = {
-                        noteColor = color
+                        addNoteVM.changeColorNote(color)
                         selectedColorName = name
                         expanded = false
                     }) {
@@ -101,5 +101,46 @@ fun AnadirNotasComponent(
                 }
             }
         }
+    }
+}
+
+@Composable
+fun ShowAlert(
+    title: String,
+    text: String,
+    confirmText: String,
+    onAcceptClick: () -> Unit,
+    OnDissmisClicl: () -> Unit
+) {
+
+    val scroll = rememberScrollState(0)
+
+    AlertDialog(onDismissRequest = { OnDissmisClicl() },
+        title = { Text(text = title) },
+        text = {
+            Text(
+                text = text,
+                textAlign = TextAlign.Justify,
+                modifier = Modifier.verticalScroll(scroll)
+            )
+        },
+        confirmButton = {
+            Button(onClick = { onAcceptClick() }) {
+                Text(text = confirmText)
+            }
+        }
+    )
+}
+
+@Composable
+fun LlamadaShowAler(AddNoteVM: AddNoteVM, text: String, caso:String) {
+    if (AddNoteVM.showAlert) {
+        ShowAlert(
+            caso,
+            text,
+            "Aceptar",
+            onAcceptClick = { AddNoteVM.closedShowAlert() },
+            OnDissmisClicl = { }
+        )
     }
 }

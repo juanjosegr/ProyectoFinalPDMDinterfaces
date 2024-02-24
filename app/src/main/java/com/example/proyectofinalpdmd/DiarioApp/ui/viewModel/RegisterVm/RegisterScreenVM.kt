@@ -23,6 +23,11 @@ class RegisterScreenVM: ViewModel() {
     var userName by mutableStateOf("")
         private set
 
+    var textError by mutableStateOf("")
+        private set
+    var casoErrorAcierto by mutableStateOf("")
+        private set
+
     private val auth: FirebaseAuth = Firebase.auth
     private val firestore = Firebase.firestore
     var showAlert by mutableStateOf(false)
@@ -41,12 +46,16 @@ class RegisterScreenVM: ViewModel() {
                     // Campos en blanco, mostrar error
                     Log.d("Error en firabase","Error con campos en blanco.")
                     showAlert = true
+                    textError = "Campo email / contraseña vacío"
+                    casoErrorAcierto = "Error"
                 }
 
                 if (!isValidEmail(email)) {
                     // Email no válido, mostrar error
                     Log.d("Error en firabase","Error con email no valido.")
                     showAlert = true
+                    textError = "email incorrecto"
+                    casoErrorAcierto = "Error"
                 }
                 auth.createUserWithEmailAndPassword(email,pasww)
                     .addOnCompleteListener { task ->
@@ -56,6 +65,8 @@ class RegisterScreenVM: ViewModel() {
                         }else{
                             Log.d("Error en firabase","Error al crear el user")
                             showAlert = true
+                            textError = "Error al crear el usuario"
+                            casoErrorAcierto = "Error"
                         }
                     }
             }catch (e: Exception){

@@ -22,6 +22,11 @@ class LoginScreenVM: ViewModel() {
     var showAlert by mutableStateOf(false)
         private set
 
+    var textError by mutableStateOf("")
+        private set
+    var casoErrorAcierto by mutableStateOf("")
+        private set
+
     fun changeEmail(email:String){
         this.email = email
     }
@@ -34,15 +39,18 @@ class LoginScreenVM: ViewModel() {
     fun login(onSuccess: () -> Unit){
         viewModelScope.launch {
             if (email.isBlank() || pasww.isBlank()) {
-                // Campos en blanco, mostrar error
                 Log.d("Error en firabase","Error con campos en blanco.")
                 showAlert = true
+                textError = "Campo email / contraseña vacío"
+                casoErrorAcierto = "Error"
             }
 
             if (!isValidEmail(email)) {
                 // Email no válido, mostrar error
                 Log.d("Error en firabase","Error con email no valido.")
                 showAlert = true
+                textError = "email incorrecto"
+                casoErrorAcierto = "Error"
             }
             try {
                 auth.signInWithEmailAndPassword(email,pasww)
@@ -52,6 +60,8 @@ class LoginScreenVM: ViewModel() {
                         } else {
                             Log.d("Error en Firebase","Usuario y/o contraseña incorrectos.")
                             showAlert = true
+                            textError = "Campo email / contraseña incorrecto"
+                            casoErrorAcierto = "Error"
                         }
                     }
             }

@@ -31,7 +31,7 @@ fun LoginScreen(navController: NavController, loginScreenVM: LoginScreenVM) {
                 onBtnLogin = { loginScreenVM.login { navController.navigate(Routes.diarioScreen.routes) } },
                 onBtnRegister = { navController.navigate(Routes.registerScreen.routes) }
             )
-            LlamadaShowAler(loginScreenVM)
+            LlamadaShowAler(loginScreenVM, loginScreenVM.textError, loginScreenVM.casoErrorAcierto)
         }
     }
 }

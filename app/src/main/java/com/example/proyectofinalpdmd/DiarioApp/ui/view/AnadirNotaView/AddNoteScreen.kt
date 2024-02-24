@@ -8,11 +8,11 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.navigation.NavController
-import com.example.proyectofinalpdmd.DiarioApp.ui.viewModel.AnadirNotaVM.AnadirNotaVM
+import com.example.proyectofinalpdmd.DiarioApp.ui.viewModel.AnadirNotaVM.AddNoteVM
 import com.example.proyectofinalpdmd.arriba.Arriba
 
 @Composable
-fun AnadirNotaScreen(navController: NavController, anadirNotaVM: AnadirNotaVM) {
+fun AddNoteScreen(navController: NavController, addNoteVM: AddNoteVM) {
     Box(modifier = Modifier.fillMaxSize()) {
         Column(
             modifier = Modifier
@@ -20,7 +20,8 @@ fun AnadirNotaScreen(navController: NavController, anadirNotaVM: AnadirNotaVM) {
                 .fillMaxSize(),
         ) {
             Arriba()
-            AnadirNotasComponent(anadirNotaVM)
+            AddNoteComponents(addNoteVM)
+            LlamadaShowAler(addNoteVM, addNoteVM.textError, addNoteVM.casoErrorAcierto)
         }
     }
 }

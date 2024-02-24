@@ -5,11 +5,11 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 
-class DiarioPrincipalScreenVM : ViewModel() {
+class DiaryScreenMain : ViewModel() {
 
-    var buscar by mutableStateOf("")
+    var search by mutableStateOf("")
 
-    fun changeBuscar(buscar: String) {
-        this.buscar = buscar
+    fun changeSearch(search: String) {
+        this.search = search
     }
 }

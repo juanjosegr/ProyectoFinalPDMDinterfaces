@@ -9,9 +9,9 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.ui.Modifier
 import androidx.navigation.compose.rememberNavController
-import com.example.proyectofinalpdmd.DiarioApp.ui.view.AnadirNotaView.AnadirNotaScreen
-import com.example.proyectofinalpdmd.DiarioApp.ui.viewModel.AnadirNotaVM.AnadirNotaVM
-import com.example.proyectofinalpdmd.DiarioApp.ui.viewModel.DiarioVM.DiarioPrincipalScreenVM
+import com.example.proyectofinalpdmd.DiarioApp.ui.view.DiarioView.DiarioPrincipalScreen
+import com.example.proyectofinalpdmd.DiarioApp.ui.viewModel.AnadirNotaVM.AddNoteVM
+import com.example.proyectofinalpdmd.DiarioApp.ui.viewModel.DiarioVM.DiaryScreenMain
 import com.example.proyectofinalpdmd.DiarioApp.ui.viewModel.LoginVm.LoginScreenVM
 import com.example.proyectofinalpdmd.DiarioApp.ui.viewModel.RegisterVm.RegisterScreenVM
 import com.example.proyectofinalpdmd.navigation.NavManager
@@ -22,8 +22,8 @@ class MainActivity : ComponentActivity() {
 
         val loginScreenVM: LoginScreenVM by viewModels()
         val registerScreenVM: RegisterScreenVM by viewModels()
-        val diarioPrincipalScreenVM: DiarioPrincipalScreenVM by viewModels()
-        val anadirNotaVM: AnadirNotaVM by viewModels()
+        val diaryScreenMain: DiaryScreenMain by viewModels()
+        val addNoteVM: AddNoteVM by viewModels()
 
         super.onCreate(savedInstanceState)
         setContent {
@@ -41,9 +41,9 @@ class MainActivity : ComponentActivity() {
                          composable(Routes.diarioScreen.routes){ DiarioPrincipalScreen(navController, diarioPrincipalScreenVM) }
                      }*/
 
-                    NavManager(loginScreenVM,registerScreenVM,diarioPrincipalScreenVM,anadirNotaVM)
+                    NavManager(loginScreenVM,registerScreenVM,diaryScreenMain,addNoteVM)
                     //AnadirNotaScreen(navController, anadirNotaVM)
-
+                    //DiarioPrincipalScreen(navController,diaryScreenMain)
                 }
             }
         }

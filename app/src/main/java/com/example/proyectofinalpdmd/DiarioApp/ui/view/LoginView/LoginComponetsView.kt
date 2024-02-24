@@ -139,11 +139,11 @@ fun ShowAlert(
 }
 
 @Composable
-fun LlamadaShowAler(loginScreenVM: LoginScreenVM) {
+fun LlamadaShowAler(loginScreenVM: LoginScreenVM,  text: String, caso:String) {
     if (loginScreenVM.showAlert) {
         ShowAlert(
-            "Error",
-            "Usuario y/o contraseña incorrectos",
+            caso,
+            text,
             "Acepart",
             onAcceptClick = { loginScreenVM.closedShowAlert() },
             OnDissmisClicl = { }

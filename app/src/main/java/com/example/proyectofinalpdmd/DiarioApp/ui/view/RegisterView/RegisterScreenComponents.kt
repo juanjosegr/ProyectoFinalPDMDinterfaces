@@ -117,11 +117,11 @@ fun ShowAlert(
 }
 
 @Composable
-fun LlamadaShowAlert(registerScreen: RegisterScreenVM) {
+fun LlamadaShowAlert(registerScreen: RegisterScreenVM,  text: String, caso:String) {
     if (registerScreen.showAlert) {
         ShowAlert(
-            "Error",
-            "Usuario no creado correctamente.",
+            caso,
+            text,
             "Acepart",
             onAcceptClick = { registerScreen.closedShowAlert() },
             OnDissmisClicl = { }
