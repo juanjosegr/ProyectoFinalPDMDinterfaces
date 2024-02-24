@@ -46,14 +46,6 @@ class LoginScreenVM : ViewModel() {
                 textError = "Campo email / contraseña vacío"
                 casoErrorAcierto = "Error"
             }
-
-            if (!isValidEmail(email)) {
-                // Email no válido, mostrar error
-                Log.d("Error en firabase", "Error con email no valido.")
-                showAlert = true
-                textError = "email incorrecto"
-                casoErrorAcierto = "Error"
-            }
             try {
                 auth.signInWithEmailAndPassword(email, pasww)
                     .addOnCompleteListener { task ->
@@ -74,10 +66,5 @@ class LoginScreenVM : ViewModel() {
 
     fun closedShowAlert() {
         showAlert = false
-    }
-
-    private fun isValidEmail(email: String): Boolean {
-        val emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+"
-        return email.matches(emailPattern.toRegex())
     }
 }
