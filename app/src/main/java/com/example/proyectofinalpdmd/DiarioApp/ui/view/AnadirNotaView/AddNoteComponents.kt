@@ -30,6 +30,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.proyectofinalpdmd.DiarioApp.data.model.NotaModel
+import com.example.proyectofinalpdmd.DiarioApp.ui.view.GenericComponent.ShowAlert
 import com.example.proyectofinalpdmd.DiarioApp.ui.viewModel.AnadirNotaVM.AddNoteVM
 import com.example.proyectofinalpdmd.DiarioApp.ui.viewModel.LoginVm.LoginScreenVM
 
@@ -102,34 +103,6 @@ fun AddNoteComponents(
             }
         }
     }
-}
-
-@Composable
-fun ShowAlert(
-    title: String,
-    text: String,
-    confirmText: String,
-    onAcceptClick: () -> Unit,
-    OnDissmisClicl: () -> Unit
-) {
-
-    val scroll = rememberScrollState(0)
-
-    AlertDialog(onDismissRequest = { OnDissmisClicl() },
-        title = { Text(text = title) },
-        text = {
-            Text(
-                text = text,
-                textAlign = TextAlign.Justify,
-                modifier = Modifier.verticalScroll(scroll)
-            )
-        },
-        confirmButton = {
-            Button(onClick = { onAcceptClick() }) {
-                Text(text = confirmText)
-            }
-        }
-    )
 }
 
 @Composable

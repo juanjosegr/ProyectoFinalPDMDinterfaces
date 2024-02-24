@@ -1,12 +1,8 @@
 package com.example.proyectofinalpdmd.DiarioApp.ui.view.RegisterView
 
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardOptions
-import androidx.compose.foundation.verticalScroll
-import androidx.compose.material.AlertDialog
-import androidx.compose.material.Button
 import androidx.compose.material.Icon
 import androidx.compose.material.OutlinedTextField
 import androidx.compose.material.Text
@@ -14,13 +10,16 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Email
 import androidx.compose.material.icons.filled.Lock
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.MutableState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.PasswordVisualTransformation
-import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.unit.DpOffset
 import androidx.compose.ui.unit.dp
+import com.example.proyectofinalpdmd.DiarioApp.ui.view.GenericComponent.PasswordVisibleIcon
+import com.example.proyectofinalpdmd.DiarioApp.ui.view.GenericComponent.ShowAlert
 import com.example.proyectofinalpdmd.DiarioApp.ui.viewModel.RegisterVm.RegisterScreenVM
 import com.example.proyectofinalpdmd.gruporegistro.BtnRgt
 import com.example.proyectofinalpdmd.gruporegistro.Frame2
@@ -35,9 +34,12 @@ import com.example.proyectofinalpdmd.gruporegistro.TopLevel
 fun GrupoRegistroNuevo(
     modifier: Modifier = Modifier,
     onBtnRegister: () -> Unit = {},
-    registerScreenVM : RegisterScreenVM
-
+    registerScreenVM: RegisterScreenVM,
+    passwordVisible: MutableState<Boolean>
 ) {
+    val visualTranformaction = if (passwordVisible.value)
+        VisualTransformation.None
+    else PasswordVisualTransformation()
     TopLevel(modifier = modifier) {
         Regristro()
         Frame2 {
@@ -54,16 +56,21 @@ fun GrupoRegistroNuevo(
         }
         Frame3 {
             OutlinedTextField(
-            value = registerScreenVM.pasww,
-            onValueChange = { registerScreenVM.changePasww(it) },
-            modifier = Modifier.fillMaxSize(),
-            label = { Text(text = "Contraseña") },
-            leadingIcon = { Icon(imageVector = Icons.Default.Lock, contentDescription = "") },
-            visualTransformation = PasswordVisualTransformation(),
-            keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Password),
-            singleLine = true,
-            shape = RoundedCornerShape(32.dp)
-        )
+                value = registerScreenVM.password,
+                onValueChange = { registerScreenVM.changePasww(it) },
+                modifier = Modifier.fillMaxSize(),
+                label = { Text(text = "Contraseña") },
+                leadingIcon = { Icon(imageVector = Icons.Default.Lock, contentDescription = "") },
+                visualTransformation = visualTranformaction,
+                trailingIcon = {
+                    if (registerScreenVM.password.isNotBlank()) {
+                        PasswordVisibleIcon(passwordVisible)
+                    } else null
+                },
+                keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Password),
+                singleLine = true,
+                shape = RoundedCornerShape(32.dp)
+            )
         }
         BtnRgt(onBtnRegister = onBtnRegister) {
             Rectangle6(
@@ -88,36 +95,10 @@ fun GrupoRegistroNuevo(
     }
 }
 
-@Composable
-fun ShowAlert(
-    title: String,
-    text: String,
-    confirmText: String,
-    onAcceptClick: () -> Unit,
-    OnDissmisClicl: () -> Unit
-) {
 
-    val scroll = rememberScrollState(0)
-
-    AlertDialog(onDismissRequest = { OnDissmisClicl() },
-        title = { Text(text = title) },
-        text = {
-            Text(
-                text = text,
-                textAlign = TextAlign.Justify,
-                modifier = Modifier.verticalScroll(scroll)
-            )
-        },
-        confirmButton = {
-            Button(onClick = { onAcceptClick() }) {
-                Text(text = confirmText)
-            }
-        }
-    )
-}
 
 @Composable
-fun LlamadaShowAlert(registerScreen: RegisterScreenVM,  text: String, caso:String) {
+fun LlamadaShowAlert(registerScreen: RegisterScreenVM, text: String, caso: String) {
     if (registerScreen.showAlert) {
         ShowAlert(
             caso,

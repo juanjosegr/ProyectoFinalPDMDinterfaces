@@ -33,13 +33,6 @@ class MainActivity : ComponentActivity() {
                     color = MaterialTheme.colorScheme.background
                 ) {
                     val navController = rememberNavController()
-                    /* NavHost(
-                         navController = navController, startDestination = Routes.loginScreen.routes
-                     ){
-                         composable(Routes.loginScreen.routes){ LoginScreen(navController,loginScreenVM) }
-                         composable(Routes.registerScreen.routes){ RegisterScreen(navController, registerScreenVM) }
-                         composable(Routes.diarioScreen.routes){ DiarioPrincipalScreen(navController, diarioPrincipalScreenVM) }
-                     }*/
 
                     NavManager(loginScreenVM,registerScreenVM,diaryScreenMain,addNoteVM)
                     //AnadirNotaScreen(navController, anadirNotaVM)

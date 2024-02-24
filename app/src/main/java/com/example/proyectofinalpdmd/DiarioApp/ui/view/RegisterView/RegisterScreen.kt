@@ -14,7 +14,12 @@ import com.example.proyectofinalpdmd.arriba.Arriba
 import com.example.proyectofinalpdmd.navigation.Routes.Routes
 
 @Composable
-fun RegisterScreen(navController: NavController, registerScreemVm: RegisterScreenVM) {
+fun RegisterScreen(
+    navController: NavController,
+    registerScreemVm: RegisterScreenVM
+) {
+
+
     Box(modifier = Modifier.fillMaxSize()) {
         Column(
             modifier = Modifier
@@ -27,9 +32,14 @@ fun RegisterScreen(navController: NavController, registerScreemVm: RegisterScree
                     .align(Alignment.CenterHorizontally)
                     .weight(0.5f),
                 registerScreenVM = registerScreemVm,
-                onBtnRegister = { registerScreemVm.createUser{ navController.navigate(Routes.loginScreen.routes) }}
+                onBtnRegister = { registerScreemVm.createUser { navController.navigate(Routes.loginScreen.routes) } },
+                passwordVisible = registerScreemVm.passwordVisible
             )
-            LlamadaShowAlert(registerScreemVm, registerScreemVm.textError, registerScreemVm.casoErrorAcierto)
+            LlamadaShowAlert(
+                registerScreemVm,
+                registerScreemVm.textError,
+                registerScreemVm.casoErrorAcierto
+            )
         }
     }
 }

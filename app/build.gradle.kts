@@ -75,13 +75,12 @@ dependencies {
     // DCS - Navegación
     implementation("androidx.navigation:navigation-compose:2.7.7")
     //Figma
-    implementation ("androidx.compose.material:material:1.6.1")
+    implementation ("androidx.compose.material:material:1.6.2")
     implementation("androidx.navigation:navigation-compose:2.7.7")
     //Navigation
     implementation("androidx.navigation:navigation-compose:2.7.7")
     //LiveData
-    implementation("androidx.compose.runtime:runtime-livedata:1.6.1")
-
+    implementation("androidx.compose.runtime:runtime-livedata:1.6.2")
     // DCS - Servicio de Autenticación
     implementation("com.google.firebase:firebase-auth-ktx:22.3.1")
     // DCS - Base de datos Firestore
@@ -96,4 +95,9 @@ dependencies {
 
     // Add the dependencies for any other desired Firebase products
     // https://firebase.google.com/docs/android/setup#available-libraries
+    //Nuevos iconos
+    implementation("androidx.compose.material:material-icons-extended:1.6.2")
+    //LifeCycle
+    implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.7.0")
+    implementation("androidx.lifecycle:lifecycle-viewmodel-compose:2.7.0")
 }

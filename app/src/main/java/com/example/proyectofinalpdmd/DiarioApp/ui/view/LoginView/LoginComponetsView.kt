@@ -14,13 +14,17 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Email
 import androidx.compose.material.icons.filled.Lock
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.MutableState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.PasswordVisualTransformation
+import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.DpOffset
 import androidx.compose.ui.unit.dp
+import com.example.proyectofinalpdmd.DiarioApp.ui.view.GenericComponent.PasswordVisibleIcon
+import com.example.proyectofinalpdmd.DiarioApp.ui.view.GenericComponent.ShowAlert
 import com.example.proyectofinalpdmd.DiarioApp.ui.viewModel.LoginVm.LoginScreenVM
 import com.example.proyectofinalpdmd.grupologin.BtnLogin
 import com.example.proyectofinalpdmd.grupologin.BtnRegistrer
@@ -38,8 +42,12 @@ fun GrupoLoginNuevo(
     modifier: Modifier = Modifier,
     onBtnLogin: () -> Unit = {},
     onBtnRegister: () -> Unit = {},
-    loginScreenVM: LoginScreenVM
+    loginScreenVM: LoginScreenVM,
+    passwordVisible: MutableState<Boolean>
 ) {
+    val visualTranformaction = if (passwordVisible.value)
+        VisualTransformation.None
+    else PasswordVisualTransformation()
     TopLevel(modifier = modifier) {
         Conectar()
         Frame2 {
@@ -61,7 +69,12 @@ fun GrupoLoginNuevo(
                 modifier = Modifier.fillMaxSize(),
                 label = { Text(text = "Contraseña") },
                 leadingIcon = { Icon(imageVector = Icons.Default.Lock, contentDescription = "") },
-                visualTransformation = PasswordVisualTransformation(),
+                visualTransformation = visualTranformaction,
+                trailingIcon = {
+                    if (loginScreenVM.pasww.isNotBlank()) {
+                        PasswordVisibleIcon(passwordVisible)
+                    } else null
+                },
                 keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Password),
                 singleLine = true,
                 shape = RoundedCornerShape(32.dp)
@@ -111,35 +124,7 @@ fun GrupoLoginNuevo(
 }
 
 @Composable
-fun ShowAlert(
-    title: String,
-    text: String,
-    confirmText: String,
-    onAcceptClick: () -> Unit,
-    OnDissmisClicl: () -> Unit
-) {
-
-    val scroll = rememberScrollState(0)
-
-    AlertDialog(onDismissRequest = { OnDissmisClicl() },
-        title = { Text(text = title) },
-        text = {
-            Text(
-                text = text,
-                textAlign = TextAlign.Justify,
-                modifier = Modifier.verticalScroll(scroll)
-            )
-        },
-        confirmButton = {
-            Button(onClick = { onAcceptClick() }) {
-                Text(text = confirmText)
-            }
-        }
-    )
-}
-
-@Composable
-fun LlamadaShowAler(loginScreenVM: LoginScreenVM,  text: String, caso:String) {
+fun LlamadaShowAler(loginScreenVM: LoginScreenVM, text: String, caso: String) {
     if (loginScreenVM.showAlert) {
         ShowAlert(
             caso,
