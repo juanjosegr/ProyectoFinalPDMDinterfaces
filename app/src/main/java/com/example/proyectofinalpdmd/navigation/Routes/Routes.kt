@@ -5,4 +5,6 @@ sealed class Routes (val routes: String) {
     object registerScreen: Routes ("RegisterScreen")
     object diarioScreen: Routes ("DiarioPrincipalScreen")
     object anadirScreen: Routes ("AnadirNotaScreen")
+    object diaryUpdateScren: Routes ("DiaryUpdateScreen")
+
 }

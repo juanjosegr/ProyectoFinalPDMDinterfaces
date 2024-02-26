@@ -24,7 +24,7 @@ class AddNoteVM : ViewModel() {
         private set
     var textNote by mutableStateOf("")
         private set
-    var noteColor by mutableStateOf(NotaModel.noteColors[0])
+    var noteColorIndex by mutableStateOf(NotaModel.noteColors[0])
         private set
     var colorNames = listOf("RedOrange", "LightGreen", "Violet", "Blue", "RedPink")
         private set
@@ -46,7 +46,7 @@ class AddNoteVM : ViewModel() {
     }
 
     fun changeColorNote(color: Color) {
-        this.noteColor = color
+        this.noteColorIndex = color
         Log.d("Color", color.toString())
     }
 
@@ -65,7 +65,7 @@ class AddNoteVM : ViewModel() {
                     val newNote = hashMapOf(
                         "title" to titleNote,
                         "note" to textNote,
-                        "noteColor" to noteColor,
+                        "noteColorIndex" to noteColorIndex,
                         "emailUser" to email.toString()
                     )
                     firestore.collection("Notes")
@@ -90,7 +90,7 @@ class AddNoteVM : ViewModel() {
     private fun resetInfoNote() {
         titleNote = ""
         textNote = ""
-        noteColor = NotaModel.noteColors[0]
+        noteColorIndex = NotaModel.noteColors[0]
     }
 
     fun closedShowAlert() {

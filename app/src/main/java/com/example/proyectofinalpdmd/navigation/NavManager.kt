@@ -6,16 +6,18 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.example.proyectofinalpdmd.DiarioApp.ui.view.AnadirNotaView.AddNoteScreen
 import com.example.proyectofinalpdmd.DiarioApp.ui.view.DiarioView.DiarioPrincipalScreen
+import com.example.proyectofinalpdmd.DiarioApp.ui.view.DiaryUpdateView.DiaryUpdateScreen
 import com.example.proyectofinalpdmd.DiarioApp.ui.view.LoginView.LoginScreen
 import com.example.proyectofinalpdmd.DiarioApp.ui.view.RegisterView.RegisterScreen
 import com.example.proyectofinalpdmd.DiarioApp.ui.viewModel.AnadirNotaVM.AddNoteVM
-import com.example.proyectofinalpdmd.DiarioApp.ui.viewModel.DiarioVM.DiaryScreenMain
+import com.example.proyectofinalpdmd.DiarioApp.ui.viewModel.DiarioVM.DiaryScreenVM
+import com.example.proyectofinalpdmd.DiarioApp.ui.viewModel.DiaryUpdateVM.DiaryUpdateVM
 import com.example.proyectofinalpdmd.DiarioApp.ui.viewModel.LoginVm.LoginScreenVM
 import com.example.proyectofinalpdmd.DiarioApp.ui.viewModel.RegisterVm.RegisterScreenVM
 import com.example.proyectofinalpdmd.navigation.Routes.Routes
 
 @Composable
-fun NavManager(loginScreenVM: LoginScreenVM, registerScreenVM: RegisterScreenVM, diaryScreenMain: DiaryScreenMain, addNoteVM: AddNoteVM) {
+fun NavManager(loginScreenVM: LoginScreenVM, registerScreenVM: RegisterScreenVM, diaryScreenVM: DiaryScreenVM, addNoteVM: AddNoteVM, diaryUpdateVM: DiaryUpdateVM) {
     val navController = rememberNavController()
 
     NavHost(
@@ -28,10 +30,13 @@ fun NavManager(loginScreenVM: LoginScreenVM, registerScreenVM: RegisterScreenVM,
             RegisterScreen(navController, registerScreenVM)
         }
         composable(Routes.diarioScreen.routes){
-            DiarioPrincipalScreen(navController, diaryScreenMain)
+            DiarioPrincipalScreen(navController, diaryScreenVM,diaryUpdateVM)
         }
         composable(Routes.anadirScreen.routes){
             AddNoteScreen(navController,addNoteVM)
+        }
+        composable(Routes.diaryUpdateScren.routes){
+            DiaryUpdateScreen(navController,diaryUpdateVM)
         }
     }
 }
