@@ -4,7 +4,8 @@ import com.example.proyectofinalpdmd.ui.theme.*
 data class NotaModel(
     val emailUser: String = "",
     val note: String = "",
-    val noteColorIndex: Int = 0,
+    val noteColorIndex: HashMap<String, Any> = hashMapOf(),
+    //    val noteColorIndex: Int = 0,
     val title: String = "",
     val idNote: String = "",
 

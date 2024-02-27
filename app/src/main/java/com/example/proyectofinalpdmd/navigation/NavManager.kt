@@ -11,13 +11,13 @@ import com.example.proyectofinalpdmd.DiarioApp.ui.view.LoginView.LoginScreen
 import com.example.proyectofinalpdmd.DiarioApp.ui.view.RegisterView.RegisterScreen
 import com.example.proyectofinalpdmd.DiarioApp.ui.viewModel.AnadirNotaVM.AddNoteVM
 import com.example.proyectofinalpdmd.DiarioApp.ui.viewModel.DiarioVM.DiaryScreenVM
-import com.example.proyectofinalpdmd.DiarioApp.ui.viewModel.DiaryUpdateVM.DiaryUpdateVM
+import com.example.proyectofinalpdmd.DiarioApp.ui.viewModel.DiaryUpdateVM.UpdateNoteVM
 import com.example.proyectofinalpdmd.DiarioApp.ui.viewModel.LoginVm.LoginScreenVM
 import com.example.proyectofinalpdmd.DiarioApp.ui.viewModel.RegisterVm.RegisterScreenVM
 import com.example.proyectofinalpdmd.navigation.Routes.Routes
 
 @Composable
-fun NavManager(loginScreenVM: LoginScreenVM, registerScreenVM: RegisterScreenVM, diaryScreenVM: DiaryScreenVM, addNoteVM: AddNoteVM, diaryUpdateVM: DiaryUpdateVM) {
+fun NavManager(loginScreenVM: LoginScreenVM, registerScreenVM: RegisterScreenVM, diaryScreenVM: DiaryScreenVM, addNoteVM: AddNoteVM, updateNoteVM: UpdateNoteVM) {
     val navController = rememberNavController()
 
     NavHost(
@@ -30,13 +30,13 @@ fun NavManager(loginScreenVM: LoginScreenVM, registerScreenVM: RegisterScreenVM,
             RegisterScreen(navController, registerScreenVM)
         }
         composable(Routes.diarioScreen.routes){
-            DiarioPrincipalScreen(navController, diaryScreenVM,diaryUpdateVM)
+            DiarioPrincipalScreen(navController, diaryScreenVM,updateNoteVM)
         }
         composable(Routes.anadirScreen.routes){
             AddNoteScreen(navController,addNoteVM)
         }
         composable(Routes.diaryUpdateScren.routes){
-            DiaryUpdateScreen(navController,diaryUpdateVM)
+            DiaryUpdateScreen(navController,updateNoteVM)
         }
     }
 }

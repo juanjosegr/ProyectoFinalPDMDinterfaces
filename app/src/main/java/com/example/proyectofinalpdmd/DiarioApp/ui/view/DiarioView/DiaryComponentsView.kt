@@ -26,9 +26,10 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import com.example.proyectofinalpdmd.DiarioApp.data.model.NotaModel
+import com.example.proyectofinalpdmd.DiarioApp.ui.view.DiaryUpdateView.UpdateNoteComponent
 import com.example.proyectofinalpdmd.DiarioApp.ui.view.GenericComponent.CustomTextBox
 import com.example.proyectofinalpdmd.DiarioApp.ui.viewModel.DiarioVM.DiaryScreenVM
-import com.example.proyectofinalpdmd.DiarioApp.ui.viewModel.DiaryUpdateVM.DiaryUpdateVM
+import com.example.proyectofinalpdmd.DiarioApp.ui.viewModel.DiaryUpdateVM.UpdateNoteVM
 import com.example.proyectofinalpdmd.arribadiario.Diario
 import com.example.proyectofinalpdmd.arribadiario.Frame2
 import com.example.proyectofinalpdmd.arribadiario.TopLevel
@@ -56,7 +57,7 @@ fun ArribaDiarioNuevo(
 }
 
 @Composable
-fun ColumnasSeparadas(navController: NavController, diaryScreenVM: DiaryScreenVM, diaryUpdateVM: DiaryUpdateVM) {
+fun ColumnasSeparadas(navController: NavController, diaryScreenVM: DiaryScreenVM, updateNoteVM: UpdateNoteVM) {
 
     LaunchedEffect(Unit){
         diaryScreenVM.fetchNotes()
@@ -85,11 +86,21 @@ fun ColumnasSeparadas(navController: NavController, diaryScreenVM: DiaryScreenVM
                 Column {
                     for (note in rightColumnNotes) {
                         val backgroundColor: Color =
+                            if (note.noteColorIndex.containsKey("colorFieldName")) {
+                                val colorValue = note.noteColorIndex["colorFieldName"]
+                                if (colorValue is Color) {
+                                    colorValue
+                                } else {
+                                    Color.White
+                                }
+                            } else {
+                                Color.White
+                            }/*val backgroundColor: Color =
                             if (note.noteColorIndex in 0 until NotaModel.noteColors.size) {
                             NotaModel.noteColors[note.noteColorIndex]
                         } else {
                             Color.White
-                        }
+                        }*/
                         CustomTextBox(
                             backgroundColor = backgroundColor,
                             title = note.title,
@@ -97,7 +108,8 @@ fun ColumnasSeparadas(navController: NavController, diaryScreenVM: DiaryScreenVM
                             text = note.note,
                             textColor = Color.Black,
                             navController = navController,
-                            diaryUpdateVM = diaryUpdateVM
+                            updateNoteVM = updateNoteVM,
+                            idDoc = note.idNote
                         )
                     }
                 }
@@ -116,11 +128,16 @@ fun ColumnasSeparadas(navController: NavController, diaryScreenVM: DiaryScreenVM
                 Column {
                     for (note in leftColumnNotes) {
                         val backgroundColor: Color =
-                            if (note.noteColorIndex != null && note.noteColorIndex in 0 until NotaModel.noteColors.size) {
-                            NotaModel.noteColors[note.noteColorIndex]
-                        } else {
-                            Color.White
-                        }
+                            if (note.noteColorIndex.containsKey("colorFieldName")) {
+                                val colorValue = note.noteColorIndex["colorFieldName"]
+                                if (colorValue is Color) {
+                                    colorValue
+                                } else {
+                                    Color.White
+                                }
+                            } else {
+                                Color.White
+                            }
                         CustomTextBox(
                             backgroundColor = backgroundColor,
                             title = note.title,
@@ -128,7 +145,8 @@ fun ColumnasSeparadas(navController: NavController, diaryScreenVM: DiaryScreenVM
                             text = note.note,
                             textColor = Color.Black,
                             navController = navController,
-                            diaryUpdateVM = diaryUpdateVM
+                            updateNoteVM = updateNoteVM,
+                            idDoc = note.idNote
                         )
                     }
                 }

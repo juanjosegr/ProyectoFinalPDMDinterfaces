@@ -10,7 +10,7 @@ import androidx.compose.material3.Surface
 import androidx.compose.ui.Modifier
 import com.example.proyectofinalpdmd.DiarioApp.ui.viewModel.AnadirNotaVM.AddNoteVM
 import com.example.proyectofinalpdmd.DiarioApp.ui.viewModel.DiarioVM.DiaryScreenVM
-import com.example.proyectofinalpdmd.DiarioApp.ui.viewModel.DiaryUpdateVM.DiaryUpdateVM
+import com.example.proyectofinalpdmd.DiarioApp.ui.viewModel.DiaryUpdateVM.UpdateNoteVM
 import com.example.proyectofinalpdmd.DiarioApp.ui.viewModel.LoginVm.LoginScreenVM
 import com.example.proyectofinalpdmd.DiarioApp.ui.viewModel.RegisterVm.RegisterScreenVM
 import com.example.proyectofinalpdmd.navigation.NavManager
@@ -23,7 +23,7 @@ class MainActivity : ComponentActivity() {
         val registerScreenVM: RegisterScreenVM by viewModels()
         val diaryScreenVM: DiaryScreenVM by viewModels()
         val addNoteVM: AddNoteVM by viewModels()
-        val diaryUpdateVM: DiaryUpdateVM by viewModels()
+        val updateNoteVM: UpdateNoteVM by viewModels()
 
         super.onCreate(savedInstanceState)
         setContent {
@@ -34,7 +34,7 @@ class MainActivity : ComponentActivity() {
                 ) {
 
 
-                    NavManager(loginScreenVM,registerScreenVM,diaryScreenVM,addNoteVM,diaryUpdateVM)
+                    NavManager(loginScreenVM,registerScreenVM,diaryScreenVM,addNoteVM,updateNoteVM)
 
                     //val navController = rememberNavController()
                     //DiarioPrincipalScreen(navController,diaryScreenMain)

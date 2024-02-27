@@ -17,7 +17,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import com.example.proyectofinalpdmd.DiarioApp.ui.viewModel.DiarioVM.DiaryScreenVM
-import com.example.proyectofinalpdmd.DiarioApp.ui.viewModel.DiaryUpdateVM.DiaryUpdateVM
+import com.example.proyectofinalpdmd.DiarioApp.ui.viewModel.DiaryUpdateVM.UpdateNoteVM
 import com.example.proyectofinalpdmd.abajo.Abajo
 import com.example.proyectofinalpdmd.navigation.Routes.Routes
 
@@ -25,7 +25,7 @@ import com.example.proyectofinalpdmd.navigation.Routes.Routes
 fun DiarioPrincipalScreen(
     navController: NavController,
     diaryScreenVM: DiaryScreenVM,
-    diaryUpdateVM: DiaryUpdateVM
+    updateNoteVM: UpdateNoteVM
 ) {
     Log.d("Compose", "DiarioPrincipalScreen")
     Box(modifier = Modifier.fillMaxSize()) {
@@ -49,7 +49,7 @@ fun DiarioPrincipalScreen(
                     diaryScreenVM
                 )
             }
-            ColumnasSeparadas(navController, diaryScreenVM, diaryUpdateVM)
+            ColumnasSeparadas(navController, diaryScreenVM, updateNoteVM)
         }
         Box(
             modifier = Modifier

@@ -8,11 +8,11 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.navigation.NavController
-import com.example.proyectofinalpdmd.DiarioApp.ui.viewModel.DiaryUpdateVM.DiaryUpdateVM
+import com.example.proyectofinalpdmd.DiarioApp.ui.viewModel.DiaryUpdateVM.UpdateNoteVM
 import com.example.proyectofinalpdmd.arriba.Arriba
 
 @Composable
-fun DiaryUpdateScreen(navController: NavController, diaryUpdateVM: DiaryUpdateVM) {
+fun DiaryUpdateScreen(navController: NavController, updateNoteVM: UpdateNoteVM) {
     Box(modifier = Modifier.fillMaxSize()) {
         Column(
             modifier = Modifier
@@ -20,7 +20,7 @@ fun DiaryUpdateScreen(navController: NavController, diaryUpdateVM: DiaryUpdateVM
                 .fillMaxSize(),
         ) {
             Arriba()
-            UpdateNoteComponent(diaryUpdateVM = diaryUpdateVM )
+            UpdateNoteComponent(updateNoteVM = updateNoteVM)
         }
     }
 }

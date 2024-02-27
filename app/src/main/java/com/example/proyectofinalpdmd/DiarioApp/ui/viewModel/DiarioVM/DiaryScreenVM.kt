@@ -44,7 +44,7 @@ class DiaryScreenVM : ViewModel() {
     }
 
     var search by mutableStateOf("")
-
+        private  set
     fun changeSearch(search: String) {
         this.search = search
     }

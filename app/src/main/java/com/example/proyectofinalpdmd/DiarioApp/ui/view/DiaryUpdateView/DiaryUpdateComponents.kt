@@ -30,11 +30,11 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.proyectofinalpdmd.DiarioApp.data.model.NotaModel
-import com.example.proyectofinalpdmd.DiarioApp.ui.viewModel.DiaryUpdateVM.DiaryUpdateVM
+import com.example.proyectofinalpdmd.DiarioApp.ui.viewModel.DiaryUpdateVM.UpdateNoteVM
 
 @Composable
 fun UpdateNoteComponent(
-    diaryUpdateVM: DiaryUpdateVM
+    updateNoteVM: UpdateNoteVM
 ) {
     var expanded by remember { mutableStateOf(false) }
     var selectedColorName by remember { mutableStateOf("Elegir color") }
@@ -43,23 +43,23 @@ fun UpdateNoteComponent(
         Spacer(modifier = Modifier.height(16.dp))
 
         OutlinedTextField(
-            value = diaryUpdateVM.titleNote,
-            onValueChange = { diaryUpdateVM.changeTitleNote(it) },
+            value = updateNoteVM.titleNote,
+            onValueChange = { updateNoteVM.changeTitleNote(it) },
             label = { Text("Título") }
         )
 
         Spacer(modifier = Modifier.height(16.dp))
 
         OutlinedTextField(
-            value = diaryUpdateVM.textNote,
-            onValueChange = { diaryUpdateVM.changeTextNote(it) },
+            value = updateNoteVM.textNote,
+            onValueChange = { updateNoteVM.changeTextNote(it) },
             label = { Text("Nota") },
             modifier = Modifier.height(200.dp)
         )
 
         Spacer(modifier = Modifier.height(16.dp))
         Row {
-            Button(onClick = { }) {
+            Button(onClick = {updateNoteVM.updateNote(updateNoteVM.idDoc) }) {
                 Text("Aceptar")
             }
 
@@ -87,9 +87,9 @@ fun UpdateNoteComponent(
                 expanded = expanded,
                 onDismissRequest = { expanded = false }
             ) {
-                NotaModel.noteColors.zip(diaryUpdateVM.colorNames).forEach { (color, name) ->
+                NotaModel.noteColors.zip(updateNoteVM.colorNames).forEach { (color, name) ->
                     DropdownMenuItem(onClick = {
-                        diaryUpdateVM.changeColorNote(color)
+                        updateNoteVM.changeColorNote(color)
                         selectedColorName = name
                         expanded = false
                     }) {

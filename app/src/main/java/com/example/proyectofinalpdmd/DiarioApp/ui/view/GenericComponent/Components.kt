@@ -32,7 +32,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
-import com.example.proyectofinalpdmd.DiarioApp.ui.viewModel.DiaryUpdateVM.DiaryUpdateVM
+import com.example.proyectofinalpdmd.DiarioApp.ui.viewModel.DiaryUpdateVM.UpdateNoteVM
 import com.example.proyectofinalpdmd.framedetextos.inter
 import com.example.proyectofinalpdmd.navigation.Routes.Routes
 
@@ -93,7 +93,8 @@ fun CustomTextBox(
     titleColor: Color,
     textColor: Color,
     navController: NavController,
-    diaryUpdateVM: DiaryUpdateVM
+    updateNoteVM: UpdateNoteVM,
+    idDoc: String
 ) {
     Log.d("Compose,CustomTextBox", "CustomTextBox - Title: $title, Text: $text")
     Row(
@@ -105,10 +106,11 @@ fun CustomTextBox(
             modifier = Modifier
                 .fillMaxSize()
                 .clickable(onClick = {
-                    diaryUpdateVM.allDateObtains(
+                    updateNoteVM.allDateObtains(
                         title,
                         text,
-                        backgroundColor
+                        backgroundColor,
+                        idDoc
                     )
                     navController.navigate(Routes.diaryUpdateScren.routes)
                 }),
