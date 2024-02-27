@@ -32,7 +32,9 @@ fun RegisterScreen(
                     .align(Alignment.CenterHorizontally)
                     .weight(0.5f),
                 loginScreenVM = loginScreenVM,
-                onBtnRegister = { loginScreenVM.createUser { navController.navigate(Routes.loginScreen.routes) } },
+                onBtnRegister = {
+                    loginScreenVM.createUser { navController.navigate(Routes.loginScreen.routes) }
+                },
                 passwordVisible = loginScreenVM.passwordVisible
             )
             LlamadaShowAlert(

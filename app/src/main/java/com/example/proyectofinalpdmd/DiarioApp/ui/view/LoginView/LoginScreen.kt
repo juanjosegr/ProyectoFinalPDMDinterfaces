@@ -29,7 +29,10 @@ fun LoginScreen(navController: NavController, loginScreenVM: LoginRegisterVM) {
                     .weight(0.5f),
                 loginScreenVM = loginScreenVM,
                 onBtnLogin = { loginScreenVM.login { navController.navigate(Routes.diarioScreen.routes) } },
-                onBtnRegister = { navController.navigate(Routes.registerScreen.routes) },
+                onBtnRegister = {
+                    loginScreenVM.resetFields()
+                    navController.navigate(Routes.registerScreen.routes)
+                                },
                 passwordVisible = loginScreenVM.passwordVisible
             )
             LlamadaShowAler(loginScreenVM, loginScreenVM.textError, loginScreenVM.casoErrorAcierto)

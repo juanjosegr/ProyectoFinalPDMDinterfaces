@@ -97,6 +97,7 @@ class LoginRegisterVM : ViewModel() {
                                 if (task.isSuccessful) {
                                     saveUser(userName, password)
                                     onSuccess()
+                                    resetFields()
                                 } else {
                                     Log.d("Error en firabase", "Error al crear el user")
                                     showAlert = true
@@ -182,6 +183,12 @@ class LoginRegisterVM : ViewModel() {
     }
     fun closedShowAlert() {
         showAlert = false
+    }
+
+    fun resetFields() {
+        email = ""
+        password = ""
+        userName = ""
     }
 }
 enum class InvalidError {
