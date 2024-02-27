@@ -9,14 +9,14 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.navigation.NavController
-import com.example.proyectofinalpdmd.DiarioApp.ui.viewModel.RegisterVm.RegisterScreenVM
+import com.example.proyectofinalpdmd.DiarioApp.ui.viewModel.UserVM.LoginRegisterVM
 import com.example.proyectofinalpdmd.arriba.Arriba
 import com.example.proyectofinalpdmd.navigation.Routes.Routes
 
 @Composable
 fun RegisterScreen(
     navController: NavController,
-    registerScreemVm: RegisterScreenVM
+    loginScreenVM: LoginRegisterVM
 ) {
 
 
@@ -31,14 +31,14 @@ fun RegisterScreen(
                 modifier = Modifier
                     .align(Alignment.CenterHorizontally)
                     .weight(0.5f),
-                registerScreenVM = registerScreemVm,
-                onBtnRegister = { registerScreemVm.createUser { navController.navigate(Routes.loginScreen.routes) } },
-                passwordVisible = registerScreemVm.passwordVisible
+                loginScreenVM = loginScreenVM,
+                onBtnRegister = { loginScreenVM.createUser { navController.navigate(Routes.loginScreen.routes) } },
+                passwordVisible = loginScreenVM.passwordVisible
             )
             LlamadaShowAlert(
-                registerScreemVm,
-                registerScreemVm.textError,
-                registerScreemVm.casoErrorAcierto
+                loginScreenVM,
+                loginScreenVM.textError,
+                loginScreenVM.casoErrorAcierto
             )
         }
     }

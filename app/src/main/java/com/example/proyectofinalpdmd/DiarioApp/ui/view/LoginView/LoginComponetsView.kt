@@ -1,12 +1,8 @@
 package com.example.proyectofinalpdmd.DiarioApp.ui.view.LoginView
 
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardOptions
-import androidx.compose.foundation.verticalScroll
-import androidx.compose.material.AlertDialog
-import androidx.compose.material.Button
 import androidx.compose.material.Icon
 import androidx.compose.material.OutlinedTextField
 import androidx.compose.material.Text
@@ -20,12 +16,11 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.input.VisualTransformation
-import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.DpOffset
 import androidx.compose.ui.unit.dp
 import com.example.proyectofinalpdmd.DiarioApp.ui.view.GenericComponent.PasswordVisibleIcon
 import com.example.proyectofinalpdmd.DiarioApp.ui.view.GenericComponent.ShowAlert
-import com.example.proyectofinalpdmd.DiarioApp.ui.viewModel.LoginVm.LoginScreenVM
+import com.example.proyectofinalpdmd.DiarioApp.ui.viewModel.UserVM.LoginRegisterVM
 import com.example.proyectofinalpdmd.grupologin.BtnLogin
 import com.example.proyectofinalpdmd.grupologin.BtnRegistrer
 import com.example.proyectofinalpdmd.grupologin.Conectar
@@ -42,7 +37,7 @@ fun GrupoLoginNuevo(
     modifier: Modifier = Modifier,
     onBtnLogin: () -> Unit = {},
     onBtnRegister: () -> Unit = {},
-    loginScreenVM: LoginScreenVM,
+    loginScreenVM: LoginRegisterVM,
     passwordVisible: MutableState<Boolean>
 ) {
     val visualTranformaction = if (passwordVisible.value)
@@ -64,14 +59,14 @@ fun GrupoLoginNuevo(
         }
         Frame3 {
             OutlinedTextField(
-                value = loginScreenVM.pasww,
+                value = loginScreenVM.password,
                 onValueChange = { loginScreenVM.changePasww(it) },
                 modifier = Modifier.fillMaxSize(),
                 label = { Text(text = "Contraseña") },
                 leadingIcon = { Icon(imageVector = Icons.Default.Lock, contentDescription = "") },
                 visualTransformation = visualTranformaction,
                 trailingIcon = {
-                    if (loginScreenVM.pasww.isNotBlank()) {
+                    if (loginScreenVM.password.isNotBlank()) {
                         PasswordVisibleIcon(passwordVisible)
                     } else null
                 },
@@ -124,7 +119,7 @@ fun GrupoLoginNuevo(
 }
 
 @Composable
-fun LlamadaShowAler(loginScreenVM: LoginScreenVM, text: String, caso: String) {
+fun LlamadaShowAler(loginScreenVM: LoginRegisterVM, text: String, caso: String) {
     if (loginScreenVM.showAlert) {
         ShowAlert(
             caso,

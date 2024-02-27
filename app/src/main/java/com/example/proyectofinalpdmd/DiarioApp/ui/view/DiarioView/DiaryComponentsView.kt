@@ -25,8 +25,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
-import com.example.proyectofinalpdmd.DiarioApp.data.model.NotaModel
-import com.example.proyectofinalpdmd.DiarioApp.ui.view.DiaryUpdateView.UpdateNoteComponent
 import com.example.proyectofinalpdmd.DiarioApp.ui.view.GenericComponent.CustomTextBox
 import com.example.proyectofinalpdmd.DiarioApp.ui.viewModel.DiarioVM.DiaryScreenVM
 import com.example.proyectofinalpdmd.DiarioApp.ui.viewModel.DiaryUpdateVM.UpdateNoteVM
@@ -95,12 +93,7 @@ fun ColumnasSeparadas(navController: NavController, diaryScreenVM: DiaryScreenVM
                                 }
                             } else {
                                 Color.White
-                            }/*val backgroundColor: Color =
-                            if (note.noteColorIndex in 0 until NotaModel.noteColors.size) {
-                            NotaModel.noteColors[note.noteColorIndex]
-                        } else {
-                            Color.White
-                        }*/
+                            }
                         CustomTextBox(
                             backgroundColor = backgroundColor,
                             title = note.title,

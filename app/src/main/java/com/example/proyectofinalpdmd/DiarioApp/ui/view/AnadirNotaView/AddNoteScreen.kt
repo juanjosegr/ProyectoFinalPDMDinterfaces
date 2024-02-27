@@ -7,12 +7,11 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.navigation.NavController
 import com.example.proyectofinalpdmd.DiarioApp.ui.viewModel.AnadirNotaVM.AddNoteVM
 import com.example.proyectofinalpdmd.arriba.Arriba
 
 @Composable
-fun AddNoteScreen(navController: NavController, addNoteVM: AddNoteVM) {
+fun AddNoteScreen( addNoteVM: AddNoteVM) {
     Box(modifier = Modifier.fillMaxSize()) {
         Column(
             modifier = Modifier

@@ -20,7 +20,7 @@ import androidx.compose.ui.unit.DpOffset
 import androidx.compose.ui.unit.dp
 import com.example.proyectofinalpdmd.DiarioApp.ui.view.GenericComponent.PasswordVisibleIcon
 import com.example.proyectofinalpdmd.DiarioApp.ui.view.GenericComponent.ShowAlert
-import com.example.proyectofinalpdmd.DiarioApp.ui.viewModel.RegisterVm.RegisterScreenVM
+import com.example.proyectofinalpdmd.DiarioApp.ui.viewModel.UserVM.LoginRegisterVM
 import com.example.proyectofinalpdmd.gruporegistro.BtnRgt
 import com.example.proyectofinalpdmd.gruporegistro.Frame2
 import com.example.proyectofinalpdmd.gruporegistro.Frame3
@@ -34,7 +34,7 @@ import com.example.proyectofinalpdmd.gruporegistro.TopLevel
 fun GrupoRegistroNuevo(
     modifier: Modifier = Modifier,
     onBtnRegister: () -> Unit = {},
-    registerScreenVM: RegisterScreenVM,
+    loginScreenVM: LoginRegisterVM,
     passwordVisible: MutableState<Boolean>
 ) {
     val visualTranformaction = if (passwordVisible.value)
@@ -44,8 +44,8 @@ fun GrupoRegistroNuevo(
         Regristro()
         Frame2 {
             OutlinedTextField(
-                value = registerScreenVM.email,
-                onValueChange = { registerScreenVM.changeEmail(it) },
+                value = loginScreenVM.email,
+                onValueChange = { loginScreenVM.changeEmail(it) },
                 modifier = Modifier.fillMaxSize(),
                 label = { Text(text = "Email") },
                 leadingIcon = { Icon(imageVector = Icons.Default.Email, contentDescription = "") },
@@ -56,14 +56,14 @@ fun GrupoRegistroNuevo(
         }
         Frame3 {
             OutlinedTextField(
-                value = registerScreenVM.password,
-                onValueChange = { registerScreenVM.changePasww(it) },
+                value = loginScreenVM.password,
+                onValueChange = { loginScreenVM.changePasww(it) },
                 modifier = Modifier.fillMaxSize(),
                 label = { Text(text = "Contraseña") },
                 leadingIcon = { Icon(imageVector = Icons.Default.Lock, contentDescription = "") },
                 visualTransformation = visualTranformaction,
                 trailingIcon = {
-                    if (registerScreenVM.password.isNotBlank()) {
+                    if (loginScreenVM.password.isNotBlank()) {
                         PasswordVisibleIcon(passwordVisible)
                     } else null
                 },
@@ -98,13 +98,13 @@ fun GrupoRegistroNuevo(
 
 
 @Composable
-fun LlamadaShowAlert(registerScreen: RegisterScreenVM, text: String, caso: String) {
-    if (registerScreen.showAlert) {
+fun LlamadaShowAlert(loginScreenVM: LoginRegisterVM, text: String, caso: String) {
+    if (loginScreenVM.showAlert) {
         ShowAlert(
             caso,
             text,
             "Acepart",
-            onAcceptClick = { registerScreen.closedShowAlert() },
+            onAcceptClick = { loginScreenVM.closedShowAlert() },
             OnDissmisClicl = { }
         )
     }

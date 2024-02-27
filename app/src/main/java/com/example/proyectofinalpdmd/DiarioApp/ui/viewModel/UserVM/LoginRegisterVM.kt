@@ -1,4 +1,4 @@
-package com.example.proyectofinalpdmd.DiarioApp.ui.viewModel.RegisterVm
+package com.example.proyectofinalpdmd.DiarioApp.ui.viewModel.UserVM
 
 import android.util.Log
 import androidx.compose.runtime.MutableState
@@ -15,33 +15,60 @@ import com.google.firebase.firestore.firestore
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
-class RegisterScreenVM : ViewModel() {
+class LoginRegisterVM : ViewModel() {
+
+    private val auth: FirebaseAuth = Firebase.auth
+    private val firestore = Firebase.firestore
     var email by mutableStateOf("")
         private set
     var password by mutableStateOf("")
         private set
     var passwordVisible: MutableState<Boolean> = mutableStateOf(false)
         private set
+    var showAlert by mutableStateOf(false)
+        private set
     var userName by mutableStateOf("")
         private set
+
     var textError by mutableStateOf("")
         private set
     var casoErrorAcierto by mutableStateOf("")
-        private set
-
-    private val auth: FirebaseAuth = Firebase.auth
-    private val firestore = Firebase.firestore
-    var showAlert by mutableStateOf(false)
         private set
 
     fun changeEmail(email: String) {
         this.email = email
     }
 
-    fun changePasww(password: String) {
-        this.password = password
+    fun changePasww(pasww: String) {
+        this.password = pasww
     }
 
+
+    fun login(onSuccess: () -> Unit) {
+        viewModelScope.launch {
+            if (email.isBlank() || password.isBlank()) {
+                Log.d("Error en firabase", "Error con campos en blanco.")
+                showAlert = true
+                textError = "Campo email / contraseña vacío"
+                casoErrorAcierto = "Error"
+            }
+            try {
+                auth.signInWithEmailAndPassword(email, password)
+                    .addOnCompleteListener { task ->
+                        if (task.isSuccessful) {
+                            onSuccess()
+                        } else {
+                            Log.d("Error en Firebase", "Usuario y/o contraseña incorrectos.")
+                            showAlert = true
+                            textError = "Campo email / contraseña incorrecto"
+                            casoErrorAcierto = "Error"
+                        }
+                    }
+            } catch (e: Exception) {
+                Log.d("Error en Jetpack", "Error: ${e.localizedMessage}")
+            }
+        }
+    }
     fun createUser(onSuccess: () -> Unit) {
         viewModelScope.launch {
             try {
@@ -85,7 +112,6 @@ class RegisterScreenVM : ViewModel() {
             }
         }
     }
-
     private fun saveUser(username: String, pasww: String) {
         val uid = auth.currentUser?.uid
         val email = auth.currentUser?.email
@@ -108,11 +134,6 @@ class RegisterScreenVM : ViewModel() {
                 .addOnFailureListener { Log.d("ERROR AL GUARDAR", "ERROR al guardar en Firestore") }
         }
     }
-
-    fun closedShowAlert() {
-        showAlert = false
-    }
-
     private fun isValidEmail(email: String): Boolean {
         val emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+"
         return email.matches(emailPattern.toRegex())
@@ -159,8 +180,10 @@ class RegisterScreenVM : ViewModel() {
             InvalidError.NO_SPECIAL_CHARACTERS -> "No hay caracteres especiales"
         }
     }
+    fun closedShowAlert() {
+        showAlert = false
+    }
 }
-
 enum class InvalidError {
     LOW_CHARACTERS,
     NO_LOWERCASE,

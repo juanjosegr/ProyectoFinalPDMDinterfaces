@@ -9,13 +9,13 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.navigation.NavController
-import com.example.proyectofinalpdmd.DiarioApp.ui.viewModel.LoginVm.LoginScreenVM
+import com.example.proyectofinalpdmd.DiarioApp.ui.viewModel.UserVM.LoginRegisterVM
 import com.example.proyectofinalpdmd.arriba.Arriba
 import com.example.proyectofinalpdmd.navigation.Routes.Routes
 
 
 @Composable
-fun LoginScreen(navController: NavController, loginScreenVM: LoginScreenVM) {
+fun LoginScreen(navController: NavController, loginScreenVM: LoginRegisterVM) {
     Box(modifier = Modifier.fillMaxSize()) {
         Column(
             modifier = Modifier

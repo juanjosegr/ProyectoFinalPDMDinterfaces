@@ -11,16 +11,14 @@ import androidx.compose.ui.Modifier
 import com.example.proyectofinalpdmd.DiarioApp.ui.viewModel.AnadirNotaVM.AddNoteVM
 import com.example.proyectofinalpdmd.DiarioApp.ui.viewModel.DiarioVM.DiaryScreenVM
 import com.example.proyectofinalpdmd.DiarioApp.ui.viewModel.DiaryUpdateVM.UpdateNoteVM
-import com.example.proyectofinalpdmd.DiarioApp.ui.viewModel.LoginVm.LoginScreenVM
-import com.example.proyectofinalpdmd.DiarioApp.ui.viewModel.RegisterVm.RegisterScreenVM
+import com.example.proyectofinalpdmd.DiarioApp.ui.viewModel.UserVM.LoginRegisterVM
 import com.example.proyectofinalpdmd.navigation.NavManager
 import com.example.proyectofinalpdmd.ui.theme.ProyectoFinalPDMDTheme
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
 
-        val loginScreenVM: LoginScreenVM by viewModels()
-        val registerScreenVM: RegisterScreenVM by viewModels()
+        val loginScreenVM: LoginRegisterVM by viewModels()
         val diaryScreenVM: DiaryScreenVM by viewModels()
         val addNoteVM: AddNoteVM by viewModels()
         val updateNoteVM: UpdateNoteVM by viewModels()
@@ -34,7 +32,7 @@ class MainActivity : ComponentActivity() {
                 ) {
 
 
-                    NavManager(loginScreenVM,registerScreenVM,diaryScreenVM,addNoteVM,updateNoteVM)
+                    NavManager(loginScreenVM,diaryScreenVM,addNoteVM,updateNoteVM)
 
                     //val navController = rememberNavController()
                     //DiarioPrincipalScreen(navController,diaryScreenMain)
