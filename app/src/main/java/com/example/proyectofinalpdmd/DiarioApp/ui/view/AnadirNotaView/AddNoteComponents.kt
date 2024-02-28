@@ -38,7 +38,6 @@ fun AddNoteComponents(
     addNoteVM: AddNoteVM
 ) {
     var expanded by remember { mutableStateOf(false) }
-    var selectedColorName by remember { mutableStateOf("Elegir color") }
 
     Column(modifier = Modifier.padding(16.dp)) {
         Text("Nueva nota", style = MaterialTheme.typography.h5)
@@ -82,7 +81,7 @@ fun AddNoteComponents(
                     modifier = Modifier.padding(8.dp),
                     verticalAlignment = Alignment.CenterVertically
                 ) {
-                    Text(text = selectedColorName, color = Color.White, fontSize = 16.sp)
+                    Text(text = addNoteVM.selectedColorName, color = Color.White, fontSize = 16.sp)
                     Icon(Icons.Default.ArrowDropDown, "dropdown", tint = Color.White)
                 }
             }
@@ -93,7 +92,7 @@ fun AddNoteComponents(
                 NotaModel.noteColors.zip(addNoteVM.colorNames).forEach { (color, name) ->
                     DropdownMenuItem(onClick = {
                         addNoteVM.changeColorNote(color)
-                        selectedColorName = name
+                        addNoteVM.changeSelectedColorName(name)
                         expanded = false
                     }) {
                         Text(text = name)

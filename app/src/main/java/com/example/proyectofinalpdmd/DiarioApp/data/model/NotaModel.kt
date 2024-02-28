@@ -5,7 +5,6 @@ data class NotaModel(
     val emailUser: String = "",
     val note: String = "",
     val noteColorIndex: HashMap<String, Any> = hashMapOf(),
-    //    val noteColorIndex: Int = 0,
     val title: String = "",
     val idNote: String = "",
 

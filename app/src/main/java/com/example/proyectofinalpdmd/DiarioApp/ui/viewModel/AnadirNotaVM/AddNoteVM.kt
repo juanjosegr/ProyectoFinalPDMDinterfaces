@@ -8,6 +8,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.proyectofinalpdmd.DiarioApp.data.model.NotaModel
+import com.example.proyectofinalpdmd.DiarioApp.ui.view.AnadirNotaView.AddNoteComponents
 import com.google.firebase.Firebase
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.auth
@@ -35,6 +36,9 @@ class AddNoteVM : ViewModel() {
     var casoErrorAcierto by mutableStateOf("")
         private set
 
+    var selectedColorName by mutableStateOf("Elegir color")
+        private set
+
     fun changeTitleNote(title: String) {
         this.titleNote = title
         Log.d("Titulo", title)
@@ -48,6 +52,9 @@ class AddNoteVM : ViewModel() {
     fun changeColorNote(color: Color) {
         this.noteColorIndex = color
         Log.d("Color", color.toString())
+    }
+    fun changeSelectedColorName(newName: String) {
+        selectedColorName = newName
     }
 
 
@@ -91,6 +98,7 @@ class AddNoteVM : ViewModel() {
         titleNote = ""
         textNote = ""
         noteColorIndex = NotaModel.noteColors[0]
+        selectedColorName = "Elegir color"
     }
 
     fun closedShowAlert() {

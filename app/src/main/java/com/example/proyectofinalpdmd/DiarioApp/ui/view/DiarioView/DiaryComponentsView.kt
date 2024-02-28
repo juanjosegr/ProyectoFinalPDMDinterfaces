@@ -31,7 +31,11 @@ import com.example.proyectofinalpdmd.DiarioApp.ui.viewModel.DiaryUpdateVM.Update
 import com.example.proyectofinalpdmd.arribadiario.Diario
 import com.example.proyectofinalpdmd.arribadiario.Frame2
 import com.example.proyectofinalpdmd.arribadiario.TopLevel
-import com.example.proyectofinalpdmd.ui.theme.*
+import com.example.proyectofinalpdmd.ui.theme.BlueOcean
+import com.example.proyectofinalpdmd.ui.theme.LightGreen
+import com.example.proyectofinalpdmd.ui.theme.RedOrange
+import com.example.proyectofinalpdmd.ui.theme.RedPink
+import com.example.proyectofinalpdmd.ui.theme.Violet
 
 
 @Composable
@@ -56,9 +60,13 @@ fun ArribaDiarioNuevo(
 }
 
 @Composable
-fun ColumnasSeparadas(navController: NavController, diaryScreenVM: DiaryScreenVM, updateNoteVM: UpdateNoteVM) {
+fun ColumnasSeparadas(
+    navController: NavController,
+    diaryScreenVM: DiaryScreenVM,
+    updateNoteVM: UpdateNoteVM
+) {
 
-    LaunchedEffect(Unit){
+    LaunchedEffect(Unit) {
         diaryScreenVM.fetchNotes()
     }
 

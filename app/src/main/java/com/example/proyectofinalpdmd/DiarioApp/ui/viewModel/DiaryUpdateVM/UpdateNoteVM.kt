@@ -71,15 +71,21 @@ class UpdateNoteVM : ViewModel() {
                     firestore.collection("Notes").document(idDoc)
                         .update(editNote as Map<String, Any>)
                         .addOnSuccessListener {
-                            Log.d("ACTUALIZAR OK", "Se actualizó la nota correctamente en Firestore")
+                            Log.d(
+                                "ACTUALIZAR OK",
+                                "Se actualizó la nota correctamente en Firestore"
+                            )
                         }
                         .addOnFailureListener {
-                            Log.d("ERROR AL ACTUALIZAR", "ERROR al actualizar una nota en Firestore")
+                            Log.d(
+                                "ERROR AL ACTUALIZAR",
+                                "ERROR al actualizar una nota en Firestore"
+                            )
                         }
                     // DCS - Si se guarda con éxito limpiamos las variables
                     resetInfoNote()
-                    }else{
-                        Log.d("Error editar nota","ID no encontrada")
+                } else {
+                    Log.d("Error editar nota", "ID no encontrada")
                 }
 
             } catch (e: Exception) {
