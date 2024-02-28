@@ -31,6 +31,7 @@ import com.example.proyectofinalpdmd.DiarioApp.ui.viewModel.DiaryUpdateVM.Update
 import com.example.proyectofinalpdmd.arribadiario.Diario
 import com.example.proyectofinalpdmd.arribadiario.Frame2
 import com.example.proyectofinalpdmd.arribadiario.TopLevel
+import com.example.proyectofinalpdmd.ui.theme.*
 
 
 @Composable
@@ -83,17 +84,15 @@ fun ColumnasSeparadas(navController: NavController, diaryScreenVM: DiaryScreenVM
             ) {
                 Column {
                     for (note in rightColumnNotes) {
-                        val backgroundColor: Color =
-                            if (note.noteColorIndex.containsKey("colorFieldName")) {
-                                val colorValue = note.noteColorIndex["colorFieldName"]
-                                if (colorValue is Color) {
-                                    colorValue
-                                } else {
-                                    Color.White
-                                }
-                            } else {
-                                Color.White
-                            }
+                        val colorIndexValue = note.noteColorIndex?.get("value-s-VKNKU") as? Long
+                        val backgroundColor: Color = when (colorIndexValue) {
+                            -92835718103040 -> RedOrange
+                            -25378210132787200 -> LightGreen
+                            -53606925635420160 -> BlueOcean
+                            -3219709348544512 -> RedPink
+                            -13911192913313792 -> Violet
+                            else -> Color.White
+                        }
                         CustomTextBox(
                             backgroundColor = backgroundColor,
                             title = note.title,
@@ -120,17 +119,19 @@ fun ColumnasSeparadas(navController: NavController, diaryScreenVM: DiaryScreenVM
             ) {
                 Column {
                     for (note in leftColumnNotes) {
-                        val backgroundColor: Color =
-                            if (note.noteColorIndex.containsKey("colorFieldName")) {
-                                val colorValue = note.noteColorIndex["colorFieldName"]
-                                if (colorValue is Color) {
-                                    colorValue
-                                } else {
-                                    Color.White
-                                }
-                            } else {
-                                Color.White
-                            }
+                        val colorIndexValue = note.noteColorIndex?.get("value-s-VKNKU") as? Long
+                        Log.d("ColorDebug", "Color Index Value: $colorIndexValue")
+                        Log.d("ColorDebug", "Color Index Value: ${note.noteColorIndex}")
+
+                        val backgroundColor: Color = when (colorIndexValue) {
+                            -92835718103040 -> RedOrange
+                            -25378210132787200 -> LightGreen
+                            -53606925635420160 -> BlueOcean
+                            -3219709348544512 -> RedPink
+                            -13911192913313792 -> Violet
+                            else -> Color.White
+                        }
+
                         CustomTextBox(
                             backgroundColor = backgroundColor,
                             title = note.title,

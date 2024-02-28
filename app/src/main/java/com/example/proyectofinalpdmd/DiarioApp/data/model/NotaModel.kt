@@ -11,6 +11,6 @@ data class NotaModel(
 
     ){
     companion object{
-        val noteColors = listOf(RedOrange,LightGreen, Violet, Blue, RedPink)
+        val noteColors = listOf(RedOrange,LightGreen, Violet, BlueOcean, RedPink)
     }
 }

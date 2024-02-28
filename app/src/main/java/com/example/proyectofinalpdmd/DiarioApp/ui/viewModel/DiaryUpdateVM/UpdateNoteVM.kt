@@ -65,7 +65,7 @@ class UpdateNoteVM : ViewModel() {
                     val editNote = hashMapOf(
                         "title" to titleNote,
                         "note" to textNote,
-                        //"noteColorIndex" to noteColorIndex
+                        "noteColorIndex" to noteColorIndex
                     )
                     // DCS - Utiliza la instancia de Firestore para actualizar la info de una nota por su id
                     firestore.collection("Notes").document(idDoc)
