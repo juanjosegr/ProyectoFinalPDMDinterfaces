@@ -8,7 +8,6 @@ import androidx.compose.ui.graphics.Color
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.proyectofinalpdmd.DiarioApp.data.model.NotaModel
-import com.example.proyectofinalpdmd.DiarioApp.ui.view.AnadirNotaView.AddNoteComponents
 import com.google.firebase.Firebase
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.auth
@@ -53,6 +52,7 @@ class AddNoteVM : ViewModel() {
         this.noteColorIndex = color
         Log.d("Color", color.toString())
     }
+
     fun changeSelectedColorName(newName: String) {
         selectedColorName = newName
     }

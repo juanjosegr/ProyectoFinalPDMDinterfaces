@@ -28,6 +28,10 @@ class UpdateNoteVM : ViewModel() {
         private set
     var showAlert by mutableStateOf(false)
         private set
+    var textError by mutableStateOf("")
+        private set
+    var casoErrorAcierto by mutableStateOf("")
+        private set
 
     fun changeTitleNote(title: String) {
         this.titleNote = title
@@ -75,15 +79,21 @@ class UpdateNoteVM : ViewModel() {
                                 "ACTUALIZAR OK",
                                 "Se actualizó la nota correctamente en Firestore"
                             )
+                            showAlert = true
+                            textError = "Actualizado correctamente"
+                            casoErrorAcierto = "Correcto"
                         }
                         .addOnFailureListener {
                             Log.d(
                                 "ERROR AL ACTUALIZAR",
                                 "ERROR al actualizar una nota en Firestore"
                             )
+                            showAlert = true
+                            textError = "Error al actualizar"
+                            casoErrorAcierto = "Error"
                         }
                     // DCS - Si se guarda con éxito limpiamos las variables
-                    resetInfoNote()
+
                 } else {
                     Log.d("Error editar nota", "ID no encontrada")
                 }
@@ -94,9 +104,25 @@ class UpdateNoteVM : ViewModel() {
         }
     }
 
-    private fun resetInfoNote() {
-        titleNote = ""
-        textNote = ""
+    fun deleteNote(idDoc: String) {
+        viewModelScope.launch(Dispatchers.IO) {
+            try {
+                // DCS - Utiliza la instancia de Firestore para eliminar una nota por su id
+                firestore.collection("Notes").document(idDoc)
+                    .delete()
+                    .addOnSuccessListener {
+                        showAlert = true
+                        textError = "Borrado Correctamente"
+                        casoErrorAcierto = "Borrado"
+                        Log.d("ELIMINAR OK", "Se eliminó la nota correctamente en Firestore")
+                    }
+                    .addOnFailureListener {
+                        Log.d("ERROR AL ELIMINAR", "ERROR al eliminar una nota en Firestore")
+                    }
+            } catch (e: Exception) {
+                Log.d("ERROR BORRAR NOTA", "Error al eliminar ${e.localizedMessage} ")
+            }
+        }
     }
 
     fun closedShowAlert() {

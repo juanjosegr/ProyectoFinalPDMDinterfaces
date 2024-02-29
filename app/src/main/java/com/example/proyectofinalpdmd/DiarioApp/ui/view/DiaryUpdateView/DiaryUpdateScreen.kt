@@ -7,11 +7,12 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.navigation.NavController
 import com.example.proyectofinalpdmd.DiarioApp.ui.viewModel.DiaryUpdateVM.UpdateNoteVM
 import com.example.proyectofinalpdmd.arriba.Arriba
 
 @Composable
-fun DiaryUpdateScreen( updateNoteVM: UpdateNoteVM) {
+fun DiaryUpdateScreen(navController: NavController, updateNoteVM: UpdateNoteVM) {
     Box(modifier = Modifier.fillMaxSize()) {
         Column(
             modifier = Modifier
@@ -20,6 +21,13 @@ fun DiaryUpdateScreen( updateNoteVM: UpdateNoteVM) {
         ) {
             Arriba()
             UpdateNoteComponent(updateNoteVM = updateNoteVM)
+            LlamadaShowAler(
+                navController,
+                updateNoteVM,
+                updateNoteVM.textError,
+                updateNoteVM.casoErrorAcierto,
+            )
+
         }
     }
 }

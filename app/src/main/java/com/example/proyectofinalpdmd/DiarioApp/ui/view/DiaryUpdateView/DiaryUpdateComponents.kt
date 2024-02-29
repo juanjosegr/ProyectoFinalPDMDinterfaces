@@ -29,8 +29,11 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
 import com.example.proyectofinalpdmd.DiarioApp.data.model.NotaModel
+import com.example.proyectofinalpdmd.DiarioApp.ui.view.GenericComponent.ShowAlert
 import com.example.proyectofinalpdmd.DiarioApp.ui.viewModel.DiaryUpdateVM.UpdateNoteVM
+import com.example.proyectofinalpdmd.navigation.Routes.Routes
 
 @Composable
 fun UpdateNoteComponent(
@@ -59,7 +62,7 @@ fun UpdateNoteComponent(
 
         Spacer(modifier = Modifier.height(16.dp))
         Row {
-            Button(onClick = {updateNoteVM.updateNote(updateNoteVM.idDoc) }) {
+            Button(onClick = { updateNoteVM.updateNote(updateNoteVM.idDoc) }) {
                 Text("Aceptar")
             }
 
@@ -70,13 +73,13 @@ fun UpdateNoteComponent(
             )
 
             Surface(
-                modifier = Modifier.clickable { expanded = true},
+                modifier = Modifier.clickable { expanded = true },
                 shape = RoundedCornerShape(4.dp),
                 color = MaterialTheme.colors.primary,
                 border = BorderStroke(1.dp, Color.LightGray)
             ) {
                 Row(
-                    modifier = Modifier.padding(8.dp),
+                    modifier = Modifier.padding(9.dp),
                     verticalAlignment = Alignment.CenterVertically
                 ) {
                     Text(text = selectedColorName, color = Color.White, fontSize = 16.sp)
@@ -98,5 +101,35 @@ fun UpdateNoteComponent(
                 }
             }
         }
+
+        Column(
+            horizontalAlignment = Alignment.CenterHorizontally,
+            modifier = Modifier.width(225.dp)
+        ) {
+            Button(onClick = { updateNoteVM.deleteNote(idDoc = updateNoteVM.idDoc) }) {
+                Text("Borrar")
+            }
+        }
+    }
+}
+
+@Composable
+fun LlamadaShowAler(
+    navController: NavController,
+    updateNoteVM: UpdateNoteVM,
+    text: String,
+    caso: String
+) {
+    if (updateNoteVM.showAlert) {
+        ShowAlert(
+            caso,
+            text,
+            "Aceptar",
+            onAcceptClick = {
+                updateNoteVM.closedShowAlert()
+                navController.navigate(Routes.diarioScreen.routes)
+            },
+            OnDissmisClicl = { }
+        )
     }
 }

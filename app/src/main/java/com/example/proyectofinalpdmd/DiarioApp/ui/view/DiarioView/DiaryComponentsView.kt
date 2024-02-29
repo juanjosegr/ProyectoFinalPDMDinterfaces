@@ -50,8 +50,8 @@ fun ArribaDiarioNuevo(
                 value = diaryScreenVM.search,
                 onValueChange = { diaryScreenVM.changeSearch(it) },
                 modifier = Modifier.fillMaxSize(),
-                label = { Text(text = "Buscar...") },
-                leadingIcon = { Icon(imageVector = Icons.Default.Search, contentDescription = "") },
+                label = { Text(text = "Buscar..." , color = Color.White)  },
+                leadingIcon = { Icon(imageVector = Icons.Default.Search, contentDescription = "", tint = Color.White) },
                 singleLine = true,
                 shape = RoundedCornerShape(32.dp),
             )

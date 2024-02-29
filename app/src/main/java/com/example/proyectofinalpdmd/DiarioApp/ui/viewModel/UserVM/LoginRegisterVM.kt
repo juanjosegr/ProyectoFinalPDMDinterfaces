@@ -69,6 +69,7 @@ class LoginRegisterVM : ViewModel() {
             }
         }
     }
+
     fun createUser(onSuccess: () -> Unit) {
         viewModelScope.launch {
             try {
@@ -113,6 +114,7 @@ class LoginRegisterVM : ViewModel() {
             }
         }
     }
+
     private fun saveUser(username: String, pasww: String) {
         val uid = auth.currentUser?.uid
         val email = auth.currentUser?.email
@@ -135,6 +137,7 @@ class LoginRegisterVM : ViewModel() {
                 .addOnFailureListener { Log.d("ERROR AL GUARDAR", "ERROR al guardar en Firestore") }
         }
     }
+
     private fun isValidEmail(email: String): Boolean {
         val emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+"
         return email.matches(emailPattern.toRegex())
@@ -181,6 +184,7 @@ class LoginRegisterVM : ViewModel() {
             InvalidError.NO_SPECIAL_CHARACTERS -> "No hay caracteres especiales"
         }
     }
+
     fun closedShowAlert() {
         showAlert = false
     }
@@ -191,6 +195,7 @@ class LoginRegisterVM : ViewModel() {
         userName = ""
     }
 }
+
 enum class InvalidError {
     LOW_CHARACTERS,
     NO_LOWERCASE,
