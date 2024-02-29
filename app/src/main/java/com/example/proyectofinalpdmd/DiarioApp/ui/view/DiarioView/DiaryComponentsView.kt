@@ -38,6 +38,12 @@ import com.example.proyectofinalpdmd.ui.theme.RedPink
 import com.example.proyectofinalpdmd.ui.theme.Violet
 
 
+/**
+ * Composable que representa la parte superior de la pantalla del diario.
+ *
+ * @param modifier Modificador para personalizar la apariencia.
+ * @param diaryScreenVM ViewModel para la pantalla del diario.
+ */
 @Composable
 fun ArribaDiarioNuevo(
     modifier: Modifier = Modifier,
@@ -68,6 +74,13 @@ fun ArribaDiarioNuevo(
     }
 }
 
+/**
+ * Composable que representa las columnas separadas de notas en la pantalla del diario.
+ *
+ * @param navController Controlador de navegación para manejar las transiciones entre pantallas.
+ * @param diaryScreenVM ViewModel para la pantalla del diario.
+ * @param updateNoteVM ViewModel para actualizar notas.
+ */
 @Composable
 fun ColumnasSeparadas(
     navController: NavController,
@@ -75,13 +88,20 @@ fun ColumnasSeparadas(
     updateNoteVM: UpdateNoteVM
 ) {
 
+    // Efecto de lanzamiento para recuperar las notas al iniciar la pantalla
     LaunchedEffect(Unit) {
         diaryScreenVM.fetchNotes()
     }
 
+    // Recuperar las notas del flujo de datos
     val notes by diaryScreenVM.notesData.collectAsState()
+
+    // Log para seguimiento en el registro de eventos
     Log.d("Compose,ColumnasSeparadas", "Number of notes: ${notes.size}")
+
+    // Verificar si hay notas disponibles
     if (notes.isNotEmpty()) {
+        // Dividir la lista de notas en dos columnas
         val halfSize = (notes.size + 1) / 2
         val leftColumnNotes = notes.take(halfSize)
         val rightColumnNotes = notes.drop(halfSize)
@@ -91,7 +111,7 @@ fun ColumnasSeparadas(
                 .fillMaxWidth()
                 .padding(16.dp)
         ) {
-            // Left side
+            // Lado izquierdo
             Box(
                 modifier = Modifier
                     .fillMaxHeight()
@@ -101,6 +121,7 @@ fun ColumnasSeparadas(
             ) {
                 Column {
                     for (note in rightColumnNotes) {
+                        // Obtener el color de fondo según el índice de color de la nota
                         val backgroundColor: Color =
                             when (note.noteColorIndex["value-s-VKNKU"] as? Long) {
                                 -92835718103040 -> RedOrange
@@ -126,7 +147,7 @@ fun ColumnasSeparadas(
 
             Spacer(modifier = Modifier.width(16.dp))
 
-            // Right side
+            // Lado derecho
             Box(
                 modifier = Modifier
                     .fillMaxHeight()
@@ -161,6 +182,7 @@ fun ColumnasSeparadas(
             }
         }
     } else {
+        // Mostrar un mensaje si no hay notas disponibles
         Text("No hay notas disponibles.")
     }
 }

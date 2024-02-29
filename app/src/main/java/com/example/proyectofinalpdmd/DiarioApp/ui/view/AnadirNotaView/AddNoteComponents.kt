@@ -33,6 +33,11 @@ import com.example.proyectofinalpdmd.DiarioApp.data.model.NotaModel
 import com.example.proyectofinalpdmd.DiarioApp.ui.view.GenericComponent.ShowAlert
 import com.example.proyectofinalpdmd.DiarioApp.ui.viewModel.AnadirNotaVM.AddNoteVM
 
+/**
+ * Componentes para la pantalla de añadir nota.
+ *
+ * @param addNoteVM ViewModel para agregar notas.
+ */
 @Composable
 fun AddNoteComponents(
     addNoteVM: AddNoteVM
@@ -44,6 +49,7 @@ fun AddNoteComponents(
 
         Spacer(modifier = Modifier.height(16.dp))
 
+        // Campo de texto para el título de la nota
         OutlinedTextField(
             value = addNoteVM.titleNote,
             onValueChange = { addNoteVM.changeTitleNote(it) },
@@ -52,6 +58,7 @@ fun AddNoteComponents(
 
         Spacer(modifier = Modifier.height(16.dp))
 
+        // Campo de texto para el contenido de la nota
         OutlinedTextField(
             value = addNoteVM.textNote,
             onValueChange = { addNoteVM.changeTextNote(it) },
@@ -60,6 +67,8 @@ fun AddNoteComponents(
         )
 
         Spacer(modifier = Modifier.height(16.dp))
+
+        // Botón para guardar la nueva nota
         Row {
             Button(onClick = { addNoteVM.saveNewNote() }) {
                 Text("Aceptar")
@@ -71,6 +80,7 @@ fun AddNoteComponents(
                     .width(50.dp)
             )
 
+            // Superficie con menú desplegable para seleccionar el color de la nota
             Surface(
                 modifier = Modifier.clickable { expanded = true },
                 shape = RoundedCornerShape(4.dp),
@@ -85,6 +95,8 @@ fun AddNoteComponents(
                     Icon(Icons.Default.ArrowDropDown, "dropdown", tint = Color.White)
                 }
             }
+
+            // Menú desplegable de colores para la nota
             DropdownMenu(
                 expanded = expanded,
                 onDismissRequest = { expanded = false }
@@ -103,8 +115,15 @@ fun AddNoteComponents(
     }
 }
 
+/**
+ * Función para mostrar un cuadro de alerta.
+ *
+ * @param AddNoteVM ViewModel para agregar notas.
+ * @param text Texto a mostrar en la alerta.
+ * @param caso Caso de la alerta.
+ */
 @Composable
-fun LlamadaShowAler(AddNoteVM: AddNoteVM, text: String, caso:String) {
+fun LlamadaShowAler(AddNoteVM: AddNoteVM, text: String, caso: String) {
     if (AddNoteVM.showAlert) {
         ShowAlert(
             caso,

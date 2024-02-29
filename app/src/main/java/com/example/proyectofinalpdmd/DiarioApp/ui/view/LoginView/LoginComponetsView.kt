@@ -32,6 +32,15 @@ import com.example.proyectofinalpdmd.grupologin.Rectangle7
 import com.example.proyectofinalpdmd.grupologin.Register
 import com.example.proyectofinalpdmd.grupologin.TopLevel
 
+/**
+ * Composable que representa un grupo de elementos para la pantalla de inicio de sesión y registro.
+ *
+ * @param modifier Modificador para personalizar la apariencia del grupo.
+ * @param onBtnLogin Función lambda que se ejecuta al hacer clic en el botón de inicio de sesión.
+ * @param onBtnRegister Función lambda que se ejecuta al hacer clic en el botón de registro.
+ * @param loginScreenVM ViewModel para la pantalla de inicio de sesión y registro.
+ * @param passwordVisible Estado mutable que indica si la contraseña es visible.
+ */
 @Composable
 fun GrupoLoginNuevo(
     modifier: Modifier = Modifier,
@@ -40,6 +49,7 @@ fun GrupoLoginNuevo(
     loginScreenVM: LoginRegisterVM,
     passwordVisible: MutableState<Boolean>
 ) {
+    // Determinar la transformación visual según la visibilidad de la contraseña
     val visualTranformaction = if (passwordVisible.value)
         VisualTransformation.None
     else PasswordVisualTransformation()
@@ -118,6 +128,13 @@ fun GrupoLoginNuevo(
     }
 }
 
+/**
+ * Función para mostrar un cuadro de alerta en la pantalla de inicio de sesión y registro.
+ *
+ * @param loginScreenVM ViewModel para la pantalla de inicio de sesión y registro.
+ * @param text Texto a mostrar en la alerta.
+ * @param caso Caso de la alerta.
+ */
 @Composable
 fun LlamadaShowAler(loginScreenVM: LoginRegisterVM, text: String, caso: String) {
     if (loginScreenVM.showAlert) {

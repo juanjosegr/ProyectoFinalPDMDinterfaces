@@ -29,6 +29,14 @@ import com.example.proyectofinalpdmd.gruporegistro.Regristro
 import com.example.proyectofinalpdmd.gruporegistro.Rgt
 import com.example.proyectofinalpdmd.gruporegistro.TopLevel
 
+/**
+ * Composable que representa un grupo de elementos para la pantalla de registro.
+ *
+ * @param modifier Modificador para personalizar la apariencia del grupo.
+ * @param onBtnRegister Función lambda que se ejecuta al hacer clic en el botón de registro.
+ * @param loginScreenVM ViewModel para la pantalla de inicio de sesión y registro.
+ * @param passwordVisible Estado mutable que indica si la contraseña es visible.
+ */
 
 @Composable
 fun GrupoRegistroNuevo(
@@ -95,8 +103,13 @@ fun GrupoRegistroNuevo(
     }
 }
 
-
-
+/**
+ * Función para mostrar un cuadro de alerta en la pantalla de registro.
+ *
+ * @param loginScreenVM ViewModel para la pantalla de inicio de sesión y registro.
+ * @param text Texto a mostrar en la alerta.
+ * @param caso Caso de la alerta.
+ */
 @Composable
 fun LlamadaShowAlert(loginScreenVM: LoginRegisterVM, text: String, caso: String) {
     if (loginScreenVM.showAlert) {

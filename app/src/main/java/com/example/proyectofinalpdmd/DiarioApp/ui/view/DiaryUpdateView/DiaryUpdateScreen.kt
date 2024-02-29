@@ -11,6 +11,12 @@ import androidx.navigation.NavController
 import com.example.proyectofinalpdmd.DiarioApp.ui.viewModel.DiaryUpdateVM.UpdateNoteVM
 import com.example.proyectofinalpdmd.arriba.Arriba
 
+/**
+ * Composable que representa la pantalla de actualización de una nota en el diario.
+ *
+ * @param navController Controlador de navegación para manejar las transiciones entre pantallas.
+ * @param updateNoteVM ViewModel para actualizar notas.
+ */
 @Composable
 fun DiaryUpdateScreen(navController: NavController, updateNoteVM: UpdateNoteVM) {
     Box(modifier = Modifier.fillMaxSize()) {

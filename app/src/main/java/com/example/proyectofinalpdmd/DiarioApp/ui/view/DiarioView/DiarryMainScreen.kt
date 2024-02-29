@@ -21,12 +21,20 @@ import com.example.proyectofinalpdmd.DiarioApp.ui.viewModel.DiaryUpdateVM.Update
 import com.example.proyectofinalpdmd.abajo.Abajo
 import com.example.proyectofinalpdmd.navigation.Routes.Routes
 
+/**
+ * Composable que representa la pantalla principal del diario.
+ *
+ * @param navController Controlador de navegación para manejar las transiciones entre pantallas.
+ * @param diaryScreenVM ViewModel para la pantalla del diario.
+ * @param updateNoteVM ViewModel para actualizar notas.
+ */
 @Composable
 fun DiarioPrincipalScreen(
     navController: NavController,
     diaryScreenVM: DiaryScreenVM,
     updateNoteVM: UpdateNoteVM
 ) {
+    // Log para seguimiento en el registro de eventos
     Log.d("Compose", "DiarioPrincipalScreen")
     Box(modifier = Modifier.fillMaxSize()) {
 

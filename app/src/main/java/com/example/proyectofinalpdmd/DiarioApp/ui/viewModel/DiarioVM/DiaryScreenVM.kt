@@ -13,14 +13,22 @@ import com.google.firebase.firestore.firestore
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 
+/**
+ * ViewModel para la pantalla del diario que gestiona la recuperación de notas del usuario.
+ */
 class DiaryScreenVM : ViewModel() {
 
+    // Instancias de Firebase
     private val auth: FirebaseAuth = Firebase.auth
     private val firestore = Firebase.firestore
 
+    // Estado de las notas para la interfaz de usuario
     private val _notesData = MutableStateFlow<List<NotaModel>>(emptyList())
     val notesData: StateFlow<List<NotaModel>> = _notesData
 
+    /**
+     * Recupera las notas del usuario desde Firestore y actualiza el estado de las notas.
+     */
     fun fetchNotes() {
         val email = auth.currentUser?.email
         firestore.collection("Notes")
@@ -39,6 +47,9 @@ class DiaryScreenVM : ViewModel() {
                     }
                 }
 
+                // Filtra las notas según el término de búsqueda. Si la búsqueda no está vacía,
+                // se devuelven solo las notas que contienen el término de búsqueda en el título o en el contenido.
+                // De lo contrario, se devuelven todas las notas sin filtrar.
                 val searchNote = if (search.isNotEmpty()) {
                     documents.filter { note ->
                         note.title.contains(search, ignoreCase = true) || note.note.contains(
@@ -54,9 +65,15 @@ class DiaryScreenVM : ViewModel() {
             }
     }
 
-
+    // Propiedad de estado para la barra de búsqueda
     var search by mutableStateOf("")
         private set
+
+    /**
+     * Función para cambiar el término de búsqueda y actualizar las notas según la búsqueda.
+     *
+     * @param search Término de búsqueda.
+     */
     fun changeSearch(search: String) {
         this.search = search
     }

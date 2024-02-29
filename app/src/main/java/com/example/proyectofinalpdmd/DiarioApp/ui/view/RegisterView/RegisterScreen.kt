@@ -13,6 +13,12 @@ import com.example.proyectofinalpdmd.DiarioApp.ui.viewModel.UserVM.LoginRegister
 import com.example.proyectofinalpdmd.arriba.Arriba
 import com.example.proyectofinalpdmd.navigation.Routes.Routes
 
+/**
+ * Composable que representa la pantalla de registro.
+ *
+ * @param navController Controlador de navegación para manejar las transiciones entre pantallas.
+ * @param loginScreenVM ViewModel para la pantalla de inicio de sesión y registro.
+ */
 @Composable
 fun RegisterScreen(
     navController: NavController,

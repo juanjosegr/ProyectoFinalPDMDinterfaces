@@ -1,8 +1,11 @@
 package com.example.proyectofinalpdmd.DiarioApp.data.model
 
 /**
- * Define el modelo de datos para un usuario.
- * Utilizado para gestionar la información de los usuarios en la base de datos.
+ * Modelo de datos para representar un usuario.
+ *
+ * @property userId Identificador único del usuario.
+ * @property email Correo electrónico del usuario.
+ * @property pasww Contraseña del usuario.
  */
 data class UserModel(
     val userId: String,

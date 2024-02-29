@@ -36,6 +36,15 @@ import com.example.proyectofinalpdmd.DiarioApp.ui.viewModel.DiaryUpdateVM.Update
 import com.example.proyectofinalpdmd.framedetextos.inter
 import com.example.proyectofinalpdmd.navigation.Routes.Routes
 
+/**
+ * Composable que muestra un cuadro de alerta con un título, texto y un botón de confirmación.
+ *
+ * @param title Título de la alerta.
+ * @param text Texto de la alerta.
+ * @param confirmText Texto del botón de confirmación.
+ * @param onAcceptClick Función lambda que se ejecuta al hacer clic en el botón de confirmación.
+ * @param OnDissmisClicl Función lambda que se ejecuta al cerrar la alerta.
+ */
 @Composable
 fun ShowAlert(
     title: String,
@@ -64,6 +73,11 @@ fun ShowAlert(
     )
 }
 
+/**
+ * Composable que representa un ícono para mostrar u ocultar una contraseña.
+ *
+ * @param passwordVisible Estado mutable que indica si la contraseña es visible.
+ */
 @Composable
 fun PasswordVisibleIcon(
     passwordVisible: MutableState<Boolean>
@@ -85,6 +99,18 @@ fun PasswordVisibleIcon(
     }
 }
 
+/**
+ * Composable que representa una caja de texto personalizada con título y texto.
+ *
+ * @param title Título de la caja de texto.
+ * @param text Texto de la caja de texto.
+ * @param backgroundColor Color de fondo de la caja de texto.
+ * @param titleColor Color del título de la caja de texto.
+ * @param textColor Color del texto de la caja de texto.
+ * @param navController Controlador de navegación para manejar las transiciones entre pantallas.
+ * @param updateNoteVM ViewModel para actualizar notas.
+ * @param idDoc Identificador de la nota asociada a la caja de texto.
+ */
 @Composable
 fun CustomTextBox(
     title: String,

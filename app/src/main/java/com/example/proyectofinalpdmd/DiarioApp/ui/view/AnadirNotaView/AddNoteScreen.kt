@@ -10,8 +10,13 @@ import androidx.compose.ui.graphics.Color
 import com.example.proyectofinalpdmd.DiarioApp.ui.viewModel.AnadirNotaVM.AddNoteVM
 import com.example.proyectofinalpdmd.arriba.Arriba
 
+/**
+ * Composable que representa la pantalla para agregar una nueva nota.
+ *
+ * @param addNoteVM ViewModel para agregar notas.
+ */
 @Composable
-fun AddNoteScreen( addNoteVM: AddNoteVM) {
+fun AddNoteScreen(addNoteVM: AddNoteVM) {
     Box(modifier = Modifier.fillMaxSize()) {
         Column(
             modifier = Modifier

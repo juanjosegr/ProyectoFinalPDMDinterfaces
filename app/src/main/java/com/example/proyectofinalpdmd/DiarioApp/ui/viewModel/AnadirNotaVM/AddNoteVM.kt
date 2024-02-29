@@ -15,11 +15,16 @@ import com.google.firebase.firestore.firestore
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
+/**
+ * ViewModel para la pantalla de añadir nota.
+ */
 class AddNoteVM : ViewModel() {
 
+    // Instancias de Firebase
     private val auth: FirebaseAuth = Firebase.auth
     private val firestore = Firebase.firestore
 
+    // Propiedades de estado para la información de la nota y la interfaz de usuario
     var titleNote by mutableStateOf("")
         private set
     var textNote by mutableStateOf("")
@@ -38,26 +43,48 @@ class AddNoteVM : ViewModel() {
     var selectedColorName by mutableStateOf("Elegir color")
         private set
 
+    /**
+     * Función para cambiar el título de la nota.
+     *
+     * @param title Nuevo título de la nota.
+     */
     fun changeTitleNote(title: String) {
         this.titleNote = title
         Log.d("Titulo", title)
     }
 
+    /**
+     * Función para cambiar el texto de la nota.
+     *
+     * @param text Nuevo texto de la nota.
+     */
     fun changeTextNote(text: String) {
         this.textNote = text
         Log.d("Texto", text)
     }
 
+    /**
+     * Función para cambiar el color de la nota.
+     *
+     * @param color Nuevo color de la nota.
+     */
     fun changeColorNote(color: Color) {
         this.noteColorIndex = color
         Log.d("Color", color.toString())
     }
 
+    /**
+     * Función para cambiar el nombre del color seleccionado.
+     *
+     * @param newName Nuevo nombre del color seleccionado.
+     */
     fun changeSelectedColorName(newName: String) {
         selectedColorName = newName
     }
 
-
+    /**
+     * Función para guardar una nueva nota en Firestore.
+     */
     fun saveNewNote() {
         val email = auth.currentUser?.email
 
@@ -94,6 +121,9 @@ class AddNoteVM : ViewModel() {
         }
     }
 
+    /**
+     * Función para restablecer la información de la nota después de guardarla.
+     */
     private fun resetInfoNote() {
         titleNote = ""
         textNote = ""
@@ -101,6 +131,9 @@ class AddNoteVM : ViewModel() {
         selectedColorName = "Elegir color"
     }
 
+    /**
+     * Función para cerrar la alerta mostrada en la interfaz de usuario.
+     */
     fun closedShowAlert() {
         showAlert = false
     }

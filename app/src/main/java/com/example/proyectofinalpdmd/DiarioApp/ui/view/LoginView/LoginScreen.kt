@@ -13,7 +13,12 @@ import com.example.proyectofinalpdmd.DiarioApp.ui.viewModel.UserVM.LoginRegister
 import com.example.proyectofinalpdmd.arriba.Arriba
 import com.example.proyectofinalpdmd.navigation.Routes.Routes
 
-
+/**
+ * Composable que representa la pantalla de inicio de sesión.
+ *
+ * @param navController Controlador de navegación para manejar las transiciones entre pantallas.
+ * @param loginScreenVM ViewModel para la pantalla de inicio de sesión y registro.
+ */
 @Composable
 fun LoginScreen(navController: NavController, loginScreenVM: LoginRegisterVM) {
     Box(modifier = Modifier.fillMaxSize()) {
@@ -32,7 +37,7 @@ fun LoginScreen(navController: NavController, loginScreenVM: LoginRegisterVM) {
                 onBtnRegister = {
                     loginScreenVM.resetFields()
                     navController.navigate(Routes.registerScreen.routes)
-                                },
+                },
                 passwordVisible = loginScreenVM.passwordVisible
             )
             LlamadaShowAler(loginScreenVM, loginScreenVM.textError, loginScreenVM.casoErrorAcierto)

@@ -15,6 +15,14 @@ import com.example.proyectofinalpdmd.DiarioApp.ui.viewModel.DiaryUpdateVM.Update
 import com.example.proyectofinalpdmd.DiarioApp.ui.viewModel.UserVM.LoginRegisterVM
 import com.example.proyectofinalpdmd.navigation.Routes.Routes
 
+/**
+ * Composable encargado de gestionar la navegación entre las diferentes pantallas de la aplicación.
+ *
+ * @param loginScreenVM ViewModel para la pantalla de inicio de sesión y registro.
+ * @param diaryScreenVM ViewModel para la pantalla principal del diario.
+ * @param addNoteVM ViewModel para la pantalla de añadir nueva nota.
+ * @param updateNoteVM ViewModel para la pantalla de actualizar nota.
+ */
 @Composable
 fun NavManager(
     loginScreenVM: LoginRegisterVM,

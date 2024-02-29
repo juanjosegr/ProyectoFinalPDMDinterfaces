@@ -15,6 +15,9 @@ import com.google.firebase.firestore.firestore
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
+/**
+ * ViewModel utilizado para la pantalla de inicio de sesión y registro.
+ */
 class LoginRegisterVM : ViewModel() {
 
     private val auth: FirebaseAuth = Firebase.auth
@@ -23,6 +26,8 @@ class LoginRegisterVM : ViewModel() {
         private set
     var password by mutableStateOf("")
         private set
+
+    //passwordVisible Indica si la contraseña debe mostrarse en texto plano o no.
     var passwordVisible: MutableState<Boolean> = mutableStateOf(false)
         private set
     var showAlert by mutableStateOf(false)
@@ -35,15 +40,29 @@ class LoginRegisterVM : ViewModel() {
     var casoErrorAcierto by mutableStateOf("")
         private set
 
+    /**
+     * Función para cambiar la dirección de correo electrónico del usuario.
+     *
+     * @param email Nueva dirección de correo electrónico.
+     */
     fun changeEmail(email: String) {
         this.email = email
     }
 
+    /**
+     * Función para cambiar la contraseña del usuario.
+     *
+     * @param pasww Nueva contraseña.
+     */
     fun changePasww(pasww: String) {
         this.password = pasww
     }
 
-
+    /**
+     * Función para realizar el inicio de sesión del usuario.
+     *
+     * @param onSuccess Lambda a ejecutar en caso de éxito en el inicio de sesión.
+     */
     fun login(onSuccess: () -> Unit) {
         viewModelScope.launch {
             if (email.isBlank() || password.isBlank()) {
@@ -70,6 +89,11 @@ class LoginRegisterVM : ViewModel() {
         }
     }
 
+    /**
+     * Función para crear un nuevo usuario.
+     *
+     * @param onSuccess Lambda a ejecutar en caso de éxito al crear el usuario.
+     */
     fun createUser(onSuccess: () -> Unit) {
         viewModelScope.launch {
             try {
@@ -115,6 +139,12 @@ class LoginRegisterVM : ViewModel() {
         }
     }
 
+    /**
+     * Función para guardar la información del usuario en Firestore.
+     *
+     * @param username Nombre de usuario.
+     * @param pasww Contraseña del usuario.
+     */
     private fun saveUser(username: String, pasww: String) {
         val uid = auth.currentUser?.uid
         val email = auth.currentUser?.email
@@ -125,7 +155,7 @@ class LoginRegisterVM : ViewModel() {
                 userId = uid.toString(),
                 pasww = pasww
             )
-            // DCS - Añade el usuario a la colección "Users" en la base de datos Firestore
+            //Añade el usuario a la colección "Users" en la base de datos Firestore
             firestore.collection("Users")
                 .add(user)
                 .addOnSuccessListener {
@@ -138,11 +168,23 @@ class LoginRegisterVM : ViewModel() {
         }
     }
 
+    /**
+     * Función para validar si la dirección de correo electrónico es válida.
+     *
+     * @param email Dirección de correo electrónico a validar.
+     * @return `true` si es válida, `false` si no lo es.
+     */
     private fun isValidEmail(email: String): Boolean {
         val emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+"
         return email.matches(emailPattern.toRegex())
     }
 
+    /**
+     * Función para validar la fortaleza de la contraseña.
+     *
+     * @param password Contraseña a validar.
+     * @return Par de valores: `true` si la contraseña es válida, `false` y un mensaje de error si no lo es.
+     */
     private fun validatePassword(password: String): Pair<Boolean, String> {
         // Verificar longitud mínima de la contraseña
         if (password.length < 6) {
@@ -175,6 +217,12 @@ class LoginRegisterVM : ViewModel() {
     }
 
 
+    /**
+     * Función para mapear un tipo de error a un mensaje descriptivo.
+     *
+     * @param error Tipo de error.
+     * @return Mensaje descriptivo del error.
+     */
     private fun mapErrorToString(error: InvalidError): String {
         return when (error) {
             InvalidError.LOW_CHARACTERS -> "No hay caracteres suficientes"
@@ -185,10 +233,16 @@ class LoginRegisterVM : ViewModel() {
         }
     }
 
+    /**
+     * Función para cerrar la alerta de la interfaz de usuario.
+     */
     fun closedShowAlert() {
         showAlert = false
     }
 
+    /**
+     * Función para restablecer los campos a sus valores por defecto.
+     */
     fun resetFields() {
         email = ""
         password = ""
@@ -196,6 +250,9 @@ class LoginRegisterVM : ViewModel() {
     }
 }
 
+/**
+ * Enumeración que representa los posibles errores de validación de contraseña.
+ */
 enum class InvalidError {
     LOW_CHARACTERS,
     NO_LOWERCASE,

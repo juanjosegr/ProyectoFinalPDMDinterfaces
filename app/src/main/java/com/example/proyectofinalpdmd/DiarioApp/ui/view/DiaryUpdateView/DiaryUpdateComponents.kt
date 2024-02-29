@@ -35,11 +35,18 @@ import com.example.proyectofinalpdmd.DiarioApp.ui.view.GenericComponent.ShowAler
 import com.example.proyectofinalpdmd.DiarioApp.ui.viewModel.DiaryUpdateVM.UpdateNoteVM
 import com.example.proyectofinalpdmd.navigation.Routes.Routes
 
+/**
+ * Composable que representa los componentes para actualizar una nota.
+ *
+ * @param updateNoteVM ViewModel para actualizar notas.
+ */
 @Composable
 fun UpdateNoteComponent(
     updateNoteVM: UpdateNoteVM
 ) {
+    // Estado para controlar la expansión del menú desplegable de colores
     var expanded by remember { mutableStateOf(false) }
+    // Estado para almacenar el nombre del color seleccionado
     var selectedColorName by remember { mutableStateOf("Elegir color") }
 
     Column(modifier = Modifier.padding(16.dp)) {
@@ -113,6 +120,14 @@ fun UpdateNoteComponent(
     }
 }
 
+/**
+ * Función para mostrar un cuadro de alerta y navegar de vuelta a la pantalla principal del diario.
+ *
+ * @param navController Controlador de navegación para manejar las transiciones entre pantallas.
+ * @param updateNoteVM ViewModel para actualizar notas.
+ * @param text Texto a mostrar en la alerta.
+ * @param caso Caso de la alerta.
+ */
 @Composable
 fun LlamadaShowAler(
     navController: NavController,
@@ -126,6 +141,7 @@ fun LlamadaShowAler(
             text,
             "Aceptar",
             onAcceptClick = {
+                // Cerrar la alerta, navegar a la pantalla principal del diario y restablecer el estado
                 updateNoteVM.closedShowAlert()
                 navController.navigate(Routes.diarioScreen.routes)
             },

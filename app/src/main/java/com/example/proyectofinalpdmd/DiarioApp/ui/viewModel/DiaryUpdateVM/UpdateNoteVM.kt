@@ -13,6 +13,9 @@ import com.google.firebase.firestore.firestore
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
+/**
+ * ViewModel utilizado para la pantalla de actualización de notas.
+ */
 class UpdateNoteVM : ViewModel() {
 
     private val firestore = Firebase.firestore
@@ -33,21 +36,44 @@ class UpdateNoteVM : ViewModel() {
     var casoErrorAcierto by mutableStateOf("")
         private set
 
+    /**
+     * Función para cambiar el título de la nota.
+     *
+     * @param title Nuevo título de la nota.
+     */
     fun changeTitleNote(title: String) {
         this.titleNote = title
         Log.d("Titulo", title)
     }
 
+    /**
+     * Función para cambiar el contenido de la nota.
+     *
+     * @param text Nuevo contenido de la nota.
+     */
     fun changeTextNote(text: String) {
         this.textNote = text
         Log.d("Texto", text)
     }
 
+    /**
+     * Función para cambiar el color de la nota.
+     *
+     * @param color Nuevo color de la nota.
+     */
     fun changeColorNote(color: Color) {
         this.noteColorIndex = color
         Log.d("Color", color.toString())
     }
 
+    /**
+     * Función para obtener todos los datos de la nota antes de la actualización.
+     *
+     * @param title Título de la nota.
+     * @param text Contenido de la nota.
+     * @param backgroundColor Color de fondo de la nota.
+     * @param idDoc Identificador único de la nota en Firestore.
+     */
     fun allDateObtains(
         title: String,
         text: String,
@@ -61,6 +87,11 @@ class UpdateNoteVM : ViewModel() {
         Log.d("Obtección de datos", title + text + backgroundColor + idDoc)
     }
 
+    /**
+     * Función para actualizar la nota en Firestore.
+     *
+     * @param idDoc Identificador único de la nota en Firestore.
+     */
     fun updateNote(idDoc: String) {
         Log.d("UpdateNoteComponent", "ID de la nota antes de la actualización: $idDoc")
         viewModelScope.launch(Dispatchers.IO) {
@@ -71,7 +102,7 @@ class UpdateNoteVM : ViewModel() {
                         "note" to textNote,
                         "noteColorIndex" to noteColorIndex
                     )
-                    // DCS - Utiliza la instancia de Firestore para actualizar la info de una nota por su id
+                    // Utiliza la instancia de Firestore para actualizar la información de una nota por su id
                     firestore.collection("Notes").document(idDoc)
                         .update(editNote as Map<String, Any>)
                         .addOnSuccessListener {
@@ -92,8 +123,6 @@ class UpdateNoteVM : ViewModel() {
                             textError = "Error al actualizar"
                             casoErrorAcierto = "Error"
                         }
-                    // DCS - Si se guarda con éxito limpiamos las variables
-
                 } else {
                     Log.d("Error editar nota", "ID no encontrada")
                 }
@@ -104,10 +133,15 @@ class UpdateNoteVM : ViewModel() {
         }
     }
 
+    /**
+     * Función para eliminar una nota en Firestore.
+     *
+     * @param idDoc Identificador único de la nota en Firestore.
+     */
     fun deleteNote(idDoc: String) {
         viewModelScope.launch(Dispatchers.IO) {
             try {
-                // DCS - Utiliza la instancia de Firestore para eliminar una nota por su id
+                //Utiliza la instancia de Firestore para eliminar una nota por su id
                 firestore.collection("Notes").document(idDoc)
                     .delete()
                     .addOnSuccessListener {
@@ -125,6 +159,9 @@ class UpdateNoteVM : ViewModel() {
         }
     }
 
+    /**
+     * Función para cerrar la alerta de la interfaz de usuario.
+     */
     fun closedShowAlert() {
         showAlert = false
     }

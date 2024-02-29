@@ -30,10 +30,8 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
-
-
-                    NavManager(loginScreenVM,diaryScreenVM,addNoteVM,updateNoteVM)
-}
+                    NavManager(loginScreenVM, diaryScreenVM, addNoteVM, updateNoteVM)
+                }
             }
         }
     }
