@@ -33,18 +33,30 @@ class DiaryScreenVM : ViewModel() {
                 val documents = mutableListOf<NotaModel>()
                 if (querySnapshot != null) {
                     for (document in querySnapshot) {
-                        val myDocument = document.toObject(NotaModel::class.java).copy(idNote = document.id)
+                        val myDocument =
+                            document.toObject(NotaModel::class.java).copy(idNote = document.id)
                         documents.add(myDocument)
                     }
                 }
-                _notesData.value = documents
-                Log.d("Firebase", "Notes fetched successfully: ${documents.size} notes")
 
+                val searchNote = if (search.isNotEmpty()) {
+                    documents.filter { note ->
+                        note.title.contains(search, ignoreCase = true) || note.note.contains(
+                            search,
+                            ignoreCase = true
+                        )
+                    }
+                } else {
+                    documents
+                }
+                _notesData.value = searchNote
+                Log.d("Firebase", "Notes fetched successfully: ${searchNote.size} notes")
             }
     }
 
+
     var search by mutableStateOf("")
-        private  set
+        private set
     fun changeSearch(search: String) {
         this.search = search
     }

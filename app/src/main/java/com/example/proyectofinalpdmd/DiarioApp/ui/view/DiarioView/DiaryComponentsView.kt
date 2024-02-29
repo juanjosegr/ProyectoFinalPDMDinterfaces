@@ -48,10 +48,19 @@ fun ArribaDiarioNuevo(
         Frame2 {
             OutlinedTextField(
                 value = diaryScreenVM.search,
-                onValueChange = { diaryScreenVM.changeSearch(it) },
+                onValueChange = { newSearch ->
+                    diaryScreenVM.changeSearch(newSearch)
+                    diaryScreenVM.fetchNotes()
+                },
                 modifier = Modifier.fillMaxSize(),
-                label = { Text(text = "Buscar..." , color = Color.White)  },
-                leadingIcon = { Icon(imageVector = Icons.Default.Search, contentDescription = "", tint = Color.White) },
+                label = { Text(text = "Buscar...", color = Color.White) },
+                leadingIcon = {
+                    Icon(
+                        imageVector = Icons.Default.Search,
+                        contentDescription = "",
+                        tint = Color.White
+                    )
+                },
                 singleLine = true,
                 shape = RoundedCornerShape(32.dp),
             )
@@ -92,15 +101,15 @@ fun ColumnasSeparadas(
             ) {
                 Column {
                     for (note in rightColumnNotes) {
-                        val colorIndexValue = note.noteColorIndex?.get("value-s-VKNKU") as? Long
-                        val backgroundColor: Color = when (colorIndexValue) {
-                            -92835718103040 -> RedOrange
-                            -25378210132787200 -> LightGreen
-                            -53606925635420160 -> BlueOcean
-                            -3219709348544512 -> RedPink
-                            -13911192913313792 -> Violet
-                            else -> Color.White
-                        }
+                        val backgroundColor: Color =
+                            when (note.noteColorIndex["value-s-VKNKU"] as? Long) {
+                                -92835718103040 -> RedOrange
+                                -25378210132787200 -> LightGreen
+                                -53606925635420160 -> BlueOcean
+                                -3219709348544512 -> RedPink
+                                -13911192913313792 -> Violet
+                                else -> Color.White
+                            }
                         CustomTextBox(
                             backgroundColor = backgroundColor,
                             title = note.title,
@@ -127,18 +136,15 @@ fun ColumnasSeparadas(
             ) {
                 Column {
                     for (note in leftColumnNotes) {
-                        val colorIndexValue = note.noteColorIndex?.get("value-s-VKNKU") as? Long
-                        Log.d("ColorDebug", "Color Index Value: $colorIndexValue")
-                        Log.d("ColorDebug", "Color Index Value: ${note.noteColorIndex}")
-
-                        val backgroundColor: Color = when (colorIndexValue) {
-                            -92835718103040 -> RedOrange
-                            -25378210132787200 -> LightGreen
-                            -53606925635420160 -> BlueOcean
-                            -3219709348544512 -> RedPink
-                            -13911192913313792 -> Violet
-                            else -> Color.White
-                        }
+                        val backgroundColor: Color =
+                            when (note.noteColorIndex["value-s-VKNKU"] as? Long) {
+                                -92835718103040 -> RedOrange
+                                -25378210132787200 -> LightGreen
+                                -53606925635420160 -> BlueOcean
+                                -3219709348544512 -> RedPink
+                                -13911192913313792 -> Violet
+                                else -> Color.White
+                            }
 
                         CustomTextBox(
                             backgroundColor = backgroundColor,
