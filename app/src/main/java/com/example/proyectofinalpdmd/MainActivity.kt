@@ -33,10 +33,7 @@ class MainActivity : ComponentActivity() {
 
 
                     NavManager(loginScreenVM,diaryScreenVM,addNoteVM,updateNoteVM)
-
-                    //val navController = rememberNavController()
-                    //DiarioPrincipalScreen(navController,diaryScreenMain)
-                }
+}
             }
         }
     }

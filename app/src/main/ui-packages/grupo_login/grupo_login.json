@@ -5,7 +5,7 @@
     "type": "figma",
     "file": "leRCCribikakEt5IrPcnx8",
     "node": "5:47",
-    "version": "5162007227",
+    "version": "5251633771",
     "component-id": "7874808b6692eb2f24151115e46b196ea0babd3c"
   },
   "default": "grupoLogin",
@@ -293,7 +293,7 @@
               "saturation": "0.0",
               "value": "1.0"
             },
-            "text-content": "Resgritarse",
+            "text-content": "Registrarse",
             "overflow": "visible",
             "max-lines": "-1",
             "text-align-vertical": "center",
