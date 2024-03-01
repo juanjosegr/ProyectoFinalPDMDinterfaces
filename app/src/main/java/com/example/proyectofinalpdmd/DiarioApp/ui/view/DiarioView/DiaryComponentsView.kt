@@ -15,6 +15,7 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Icon
 import androidx.compose.material.OutlinedTextField
 import androidx.compose.material.Text
+import androidx.compose.material.TextFieldDefaults
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Search
 import androidx.compose.runtime.Composable
@@ -69,6 +70,11 @@ fun ArribaDiarioNuevo(
                 },
                 singleLine = true,
                 shape = RoundedCornerShape(32.dp),
+                colors = TextFieldDefaults.outlinedTextFieldColors(
+                    textColor = Color.White, 
+                    cursorColor = Color.White,
+                    focusedBorderColor = Color.White,
+                )
             )
         }
     }
